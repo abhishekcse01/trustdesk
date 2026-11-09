@@ -1,0 +1,26 @@
+# Runtime settings. Paths are relative to the repo root.
+data_dir: data
+raw_dir: data/raw
+chroma_dir: data/chroma
+collection: policies
+
+chunking:
+  target_tokens: 300     # approximate, words x 1.33
+  overlap_tokens: 50
+  min_tokens: 40         # merge smaller sections into the next one
+
+embedding:
+  model: BAAI/bge-small-en-v1.5   # fastembed, ONNX on CPU
+  batch_size: 64
+
+retrieval:
+  top_k: 3
+
+llm:
+  # Model alias used by the single-chain answerer in phase 1.
+  # "ollama/<tag>" calls the local Ollama server; anything else goes through LiteLLM.
+  drafter: ollama/qwen3:4b
+  ollama_url: http://localhost:11434
+  temperature: 0.1
+  num_ctx: 8192
+  timeout_s: 600

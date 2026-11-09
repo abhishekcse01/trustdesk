@@ -1,0 +1,114 @@
+"""Command line: fetch -> index -> ask / batch."""
+
+from __future__ import annotations
+
+import json
+from datetime import datetime
+from pathlib import Path
+
+import typer
+import yaml
+from rich.console import Console
+from rich.table import Table
+
+from trustdesk import config
+from trustdesk.agents.answer import AnswerResult, answer
+from trustdesk.ingest.fetch import crawl_source
+from trustdesk.ingest.index import build_index
+from trustdesk.retrieval.dense import search
+
+app = typer.Typer(add_completion=False, help="TrustDesk: cited answers to security questionnaires.")
+console = Console()
+
+
+@app.command()
+def fetch() -> None:
+    """Crawl the public policy sources in config/sources.yaml into data/raw/."""
+    cfg, src_cfg = config.settings(), config.sources()
+    out = config.path(cfg.raw_dir)
+    for src in src_cfg.sources:
+        console.print(f"[bold]Fetching {src.name}[/] (max {src_cfg.max_pages} pages)")
+        saved = crawl_source(src, src_cfg, out, log=console.print)
+        console.print(f"Saved {len(saved)} pages to {out}")
+    console.print(f"[dim]{src_cfg.attribution}[/]")
+
+
+@app.command()
+def index() -> None:
+    """Chunk, embed and index data/raw/ into ChromaDB (full rebuild)."""
+    n = build_index(config.settings(), log=console.print)
+    console.print(f"[green]Indexed {n} chunks.[/]")
+
+
+@app.command("search")
+def search_cmd(query: str, k: int = 5) -> None:
+    """Show the top-k chunks for a query (retrieval debugging)."""
+    for h in search(query, config.settings(), k):
+        console.print(f"[bold]{h.score:.3f}[/] {h.heading_path}\n  [dim]{h.url}[/]")
+
+
+def _print_result(r: AnswerResult) -> None:
+    if r.draft is None:
+        console.print(f"[red]Invalid model output:[/] {r.error}")
+        return
+    d = r.draft
+    if d.abstain:
+        console.print(f"[yellow]Needs human input:[/] {d.abstain_reason}")
+    else:
+        console.print(f"[bold]{d.answer_choice or ''}[/] {d.answer_text}")
+    for c, chk in zip(d.citations, r.checks, strict=True):
+        hit = next((h for h in r.hits if h.chunk_id == c.chunk_id), None)
+        mark = "[green]ok[/]" if chk.in_context and chk.quote_found else "[red]unsupported[/]"
+        where = f"{hit.heading_path} ({hit.url})" if hit else "unknown chunk"
+        console.print(f'  {mark} "{c.quote}"\n     [dim]{where}[/]')
+    console.print(
+        f"[dim]{r.model} | {r.seconds}s | {r.prompt_tokens} prompt + "
+        f"{r.output_tokens} output tokens | {r.output_tok_s} tok/s[/]"
+    )
+
+
+@app.command()
+def ask(question: str) -> None:
+    """Answer one question with citations."""
+    _print_result(answer(question, config.settings()))
+
+
+@app.command()
+def batch(
+    questions: Path = typer.Argument(Path("evals/phase1/questions.yaml")),
+    out_dir: Path = typer.Option(Path("reports/runs")),
+) -> None:
+    """Answer every question in a YAML file; write JSONL and print a summary."""
+    cfg = config.settings()
+    items = yaml.safe_load(questions.read_text(encoding="utf-8"))["questions"]
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / f"run-{datetime.now():%Y%m%d-%H%M%S}.jsonl"
+    table = Table("id", "expect", "result", "cites ok", "secs")
+    with out.open("w", encoding="utf-8") as f:
+        for item in items:
+            console.print(f"[bold]{item['id']}[/] {item['question']}")
+            r = answer(item["question"], cfg)
+            row = {"id": item["id"], "expect": item.get("expect"), **r.model_dump(exclude={"hits"})}
+            row["retrieved"] = [
+                h.model_dump(include={"chunk_id", "url", "heading_path", "score"}) for h in r.hits
+            ]
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            result = (
+                "error"
+                if r.draft is None
+                else ("abstain" if r.draft.abstain else (r.draft.answer_choice or "text"))
+            )
+            n_ok = sum(c.in_context and c.quote_found for c in r.checks)
+            table.add_row(
+                item["id"],
+                str(item.get("expect")),
+                result,
+                f"{n_ok}/{len(r.checks)}",
+                f"{r.seconds:.0f}",
+            )
+    console.print(table)
+    console.print(f"Wrote {out}")
+
+
+if __name__ == "__main__":
+    app()

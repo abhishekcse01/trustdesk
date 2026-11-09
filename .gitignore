@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+dist/
+
+# Secrets
+.env
+.env.*
+
+# Data: fetched GitLab handbook pages (CC BY-SA, re-fetch instead of committing)
+# and CAIQ files (CSA licence forbids redistribution). See docs/data_card.md.
+data/
+*.xlsx
+*.csv
+!evals/**/*.csv
+
+# Local run outputs (raw JSONL and console logs stay local; summaries are committed)
+reports/runs/
+reports/*.txt

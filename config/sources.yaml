@@ -1,0 +1,27 @@
+# Public policy sources to ingest.
+# GitLab's handbook is published under CC BY-SA 4.0 (confirm the repo LICENSE before redistributing).
+# Fetched pages go to data/raw/ which is git-ignored; re-run `trustdesk fetch` to rebuild.
+attribution: "Content from the GitLab Handbook (https://handbook.gitlab.com), CC BY-SA 4.0."
+user_agent: "TrustDesk-portfolio-crawler/0.1 (educational project)"
+delay_s: 1.0          # polite delay between requests
+max_pages: 150
+
+sources:
+  - name: gitlab-security
+    allow_prefix: https://handbook.gitlab.com/handbook/security/
+    # IT how-to guides (laptop setup, Okta device checks) swamp the crawl and are not
+    # policy; the first run spent 144 of 203 pages there.
+    deny_prefixes:
+      - https://handbook.gitlab.com/handbook/security/corporate/
+      - https://handbook.gitlab.com/handbook/security/identity/
+      - https://handbook.gitlab.com/handbook/security/security-operations/sirt/runbooks/
+    # URLs containing these words are fetched before everything else.
+    priority_keywords: [policy, policies, standard, controls, measures, isms, contingency,
+                        incident, vulnerab, encryption, access, backup, logging, risk,
+                        penetration, third-party, vendor, training, retention]
+    seeds:
+      - https://handbook.gitlab.com/handbook/security/policies_and_standards/
+      - https://handbook.gitlab.com/handbook/security/security-and-technology-policies/
+      - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+      - https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/
+      - https://handbook.gitlab.com/handbook/security/

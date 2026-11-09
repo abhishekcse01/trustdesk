@@ -1,0 +1,24 @@
+# Phase 1 smoke set: 20 questions written in our own words, covering common
+# questionnaire topics (not copied from CAIQ, which may not be redistributed).
+# expect: answerable | partial | unanswerable  -- our prior guess before labelling in phase 2.
+questions:
+  - {id: P01, expect: answerable, question: "Is customer data encrypted at rest?"}
+  - {id: P02, expect: answerable, question: "Is data encrypted in transit, and which TLS versions are allowed?"}
+  - {id: P03, expect: answerable, question: "Do you perform penetration tests, and how often?"}
+  - {id: P04, expect: answerable, question: "Is multi-factor authentication required for employee access to company systems?"}
+  - {id: P05, expect: answerable, question: "How often are user access rights reviewed?"}
+  - {id: P06, expect: answerable, question: "Do employees receive security awareness training, and how often?"}
+  - {id: P07, expect: answerable, question: "Do you have a documented incident response process?"}
+  - {id: P08, expect: answerable, question: "Do you run a vulnerability management program with remediation timelines by severity?"}
+  - {id: P09, expect: answerable, question: "Is there a formal process for approving and reviewing security policies?"}
+  - {id: P10, expect: answerable, question: "Which compliance frameworks or certifications does your security program follow?"}
+  - {id: P11, expect: partial, question: "Do you maintain a business continuity and disaster recovery plan, and is it tested?"}
+  - {id: P12, expect: partial, question: "How are third-party vendors assessed for security risk?"}
+  - {id: P13, expect: partial, question: "Are production backups performed, and how long are they kept?"}
+  - {id: P14, expect: partial, question: "Do you have a bug bounty or responsible disclosure program?"}
+  - {id: P15, expect: partial, question: "How is access removed when an employee leaves the company?"}
+  - {id: P16, expect: partial, question: "Are security logs centrally collected and monitored?"}
+  - {id: P17, expect: unanswerable, question: "What is the fuel capacity of the backup generators at your headquarters data center?"}
+  - {id: P18, expect: unanswerable, question: "List the names and phone numbers of your on-call security engineers."}
+  - {id: P19, expect: unanswerable, question: "What was your total security budget in the last fiscal year?"}
+  - {id: P20, expect: unanswerable, question: "Do you hold a HITRUST CSF r2 certification for your Brazilian subsidiary?"}
