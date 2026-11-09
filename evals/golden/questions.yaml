@@ -1,0 +1,159 @@
+# Golden set v1: 100 questions written for this project (MIT), grouped by the 17 control
+# domains that the CSA Cloud Controls Matrix uses. No CAIQ text is included.
+#
+# expect = our prior guess before references are built: answerable | partial | unanswerable.
+# The final label lives in references.yaml after a strong model drafts each reference and a
+# human verifies it (verified: true).
+domains:
+  AA: Audit and assurance
+  AIS: Application and interface security
+  BCR: Business continuity and resilience
+  CCC: Change control and configuration
+  CEK: Cryptography and key management
+  DCS: Datacenter and physical security
+  DSP: Data security and privacy
+  GRC: Governance, risk and compliance
+  HRS: Human resources security
+  IAM: Identity and access management
+  IPY: Interoperability and portability
+  IVS: Infrastructure and network security
+  LOG: Logging and monitoring
+  SEF: Security incident management
+  STA: Supply chain and third parties
+  TVM: Threat and vulnerability management
+  UEM: Endpoint management
+
+questions:
+  # Audit and assurance
+  - {id: G001, domain: AA, expect: answerable, question: "Are your security controls tested by an internal team on a regular schedule?"}
+  - {id: G002, domain: AA, expect: answerable, question: "Do you undergo independent third-party audits such as SOC 2 Type 2?"}
+  - {id: G003, domain: AA, expect: partial, question: "How are audit findings tracked through to remediation?"}
+  - {id: G004, domain: AA, expect: answerable, question: "Do you map your controls to more than one compliance framework?"}
+  - {id: G005, domain: AA, expect: partial, question: "Can customers obtain a copy of your latest audit report, and how?"}
+  - {id: G006, domain: AA, expect: unanswerable, question: "What was the name of the audit firm that performed your most recent ISO 27001 surveillance audit?"}
+
+  # Application and interface security
+  - {id: G007, domain: AIS, expect: answerable, question: "Do you follow a documented secure software development lifecycle?"}
+  - {id: G008, domain: AIS, expect: answerable, question: "Is code reviewed by someone other than the author before it is merged?"}
+  - {id: G009, domain: AIS, expect: answerable, question: "Do you run automated security scanning (SAST, dependency scanning) on your code?"}
+  - {id: G010, domain: AIS, expect: partial, question: "Do developers receive secure coding training?"}
+  - {id: G011, domain: AIS, expect: partial, question: "How are third-party open source dependencies vetted for vulnerabilities?"}
+  - {id: G012, domain: AIS, expect: partial, question: "Are application security reviews performed for new features with security impact?"}
+
+  # Business continuity and resilience
+  - {id: G013, domain: BCR, expect: partial, question: "Do you have a business continuity plan?"}
+  - {id: G014, domain: BCR, expect: partial, question: "Do you maintain an information system contingency plan for critical systems?"}
+  - {id: G015, domain: BCR, expect: partial, question: "How often is your business continuity or disaster recovery plan tested?"}
+  - {id: G016, domain: BCR, expect: partial, question: "Have you performed a business impact analysis to identify critical systems?"}
+  - {id: G017, domain: BCR, expect: unanswerable, question: "What are your contractual RTO and RPO commitments for each customer tier?"}
+  - {id: G018, domain: BCR, expect: partial, question: "Are backups of production data performed and protected?"}
+
+  # Change control and configuration
+  - {id: G019, domain: CCC, expect: answerable, question: "Do changes to production require review and approval before deployment?"}
+  - {id: G020, domain: CCC, expect: partial, question: "Do you maintain security baselines or hardening standards for your systems?"}
+  - {id: G021, domain: CCC, expect: partial, question: "Are emergency changes documented and reviewed after the fact?"}
+  - {id: G022, domain: CCC, expect: partial, question: "Do you require baseline security settings for code repositories and projects?"}
+  - {id: G023, domain: CCC, expect: partial, question: "Is infrastructure managed as code with version control?"}
+  - {id: G024, domain: CCC, expect: unanswerable, question: "How many production changes did you deploy last quarter?"}
+
+  # Cryptography and key management
+  - {id: G025, domain: CEK, expect: answerable, question: "Is customer data encrypted at rest?"}
+  - {id: G026, domain: CEK, expect: answerable, question: "Which TLS versions do you allow for data in transit?"}
+  - {id: G027, domain: CEK, expect: answerable, question: "Do you have a cryptographic standard that lists approved algorithms?"}
+  - {id: G028, domain: CEK, expect: partial, question: "How are encryption keys managed and rotated?"}
+  - {id: G029, domain: CEK, expect: answerable, question: "Is the use of weak or deprecated cryptographic algorithms prohibited?"}
+  - {id: G030, domain: CEK, expect: partial, question: "How are API tokens and access tokens managed and expired?"}
+
+  # Datacenter and physical security
+  - {id: G031, domain: DCS, expect: partial, question: "Do you have a physical security standard for company-owned assets?"}
+  - {id: G032, domain: DCS, expect: partial, question: "Are your production systems hosted with a cloud provider that is independently audited for physical security?"}
+  - {id: G033, domain: DCS, expect: unanswerable, question: "How many security guards are on site at your primary data center overnight?"}
+  - {id: G034, domain: DCS, expect: partial, question: "What protections are required for laptops and other company devices when traveling?"}
+  - {id: G035, domain: DCS, expect: unanswerable, question: "What fire suppression system is installed in your server rooms?"}
+
+  # Data security and privacy
+  - {id: G036, domain: DSP, expect: answerable, question: "Do you classify data by sensitivity, and what are the classification levels?"}
+  - {id: G037, domain: DSP, expect: answerable, question: "Do you have a records retention and deletion policy?"}
+  - {id: G038, domain: DSP, expect: partial, question: "How is customer data securely disposed of when no longer needed?"}
+  - {id: G039, domain: DSP, expect: partial, question: "Are there handling requirements for the most sensitive class of data?"}
+  - {id: G040, domain: DSP, expect: partial, question: "Is access to customer data limited to staff who need it for their job?"}
+  - {id: G041, domain: DSP, expect: unanswerable, question: "In which specific countries are customer backups physically stored?"}
+
+  # Governance, risk and compliance
+  - {id: G042, domain: GRC, expect: answerable, question: "Is there a formal process for creating, approving and reviewing security policies?"}
+  - {id: G043, domain: GRC, expect: answerable, question: "How often are security policies reviewed?"}
+  - {id: G044, domain: GRC, expect: answerable, question: "Do you have a security risk management program?"}
+  - {id: G045, domain: GRC, expect: answerable, question: "Is there a process to request and approve exceptions to security policies?"}
+  - {id: G046, domain: GRC, expect: partial, question: "Do you operate an information security management system aligned with ISO 27001?"}
+  - {id: G047, domain: GRC, expect: partial, question: "How are identified security risks tracked and treated?"}
+
+  # Human resources security
+  - {id: G048, domain: HRS, expect: answerable, question: "Do all employees complete security awareness training?"}
+  - {id: G049, domain: HRS, expect: answerable, question: "How often must security awareness training be repeated?"}
+  - {id: G050, domain: HRS, expect: partial, question: "Do employees acknowledge security policies or an acceptable use policy?"}
+  - {id: G051, domain: HRS, expect: partial, question: "Are background checks performed on new hires?"}
+  - {id: G052, domain: HRS, expect: partial, question: "What happens if an employee does not complete required security training on time?"}
+  - {id: G053, domain: HRS, expect: unanswerable, question: "What percentage of employees completed security training last year?"}
+
+  # Identity and access management
+  - {id: G054, domain: IAM, expect: answerable, question: "Is multi-factor authentication required for access to company systems?"}
+  - {id: G055, domain: IAM, expect: answerable, question: "How often are user access rights reviewed?"}
+  - {id: G056, domain: IAM, expect: answerable, question: "Do you have password requirements such as length and use of a password manager?"}
+  - {id: G057, domain: IAM, expect: answerable, question: "Is access granted based on least privilege and job role?"}
+  - {id: G058, domain: IAM, expect: partial, question: "How is access removed when an employee leaves?"}
+  - {id: G059, domain: IAM, expect: partial, question: "How is privileged or administrative access controlled?"}
+  - {id: G060, domain: IAM, expect: partial, question: "Do you use single sign-on for employee access to applications?"}
+
+  # Interoperability and portability
+  - {id: G061, domain: IPY, expect: unanswerable, question: "In what formats can customers export all of their data when they leave the service?"}
+  - {id: G062, domain: IPY, expect: unanswerable, question: "Do you charge a fee for bulk data export at contract termination?"}
+  - {id: G063, domain: IPY, expect: unanswerable, question: "Which open standards do your APIs follow for identity federation with customer systems?"}
+
+  # Infrastructure and network security
+  - {id: G064, domain: IVS, expect: partial, question: "Are production networks segmented or isolated from corporate networks?"}
+  - {id: G065, domain: IVS, expect: partial, question: "Do you use a zero trust approach to network access?"}
+  - {id: G066, domain: IVS, expect: partial, question: "Are cloud infrastructure resources scanned for misconfigurations?"}
+  - {id: G067, domain: IVS, expect: partial, question: "Are firewalls or security groups used to restrict inbound traffic?"}
+  - {id: G068, domain: IVS, expect: unanswerable, question: "What is the bandwidth capacity of your DDoS mitigation service in Gbps?"}
+  - {id: G069, domain: IVS, expect: partial, question: "Do you follow documented security architecture principles?"}
+
+  # Logging and monitoring
+  - {id: G070, domain: LOG, expect: answerable, question: "Do you have a security logging standard that defines what must be logged?"}
+  - {id: G071, domain: LOG, expect: answerable, question: "Are security logs centrally collected in a SIEM?"}
+  - {id: G072, domain: LOG, expect: partial, question: "How long are security logs retained?"}
+  - {id: G073, domain: LOG, expect: partial, question: "How do you decide which systems are critical for logging?"}
+  - {id: G074, domain: LOG, expect: partial, question: "Are logs protected from tampering or unauthorized access?"}
+  - {id: G075, domain: LOG, expect: partial, question: "Are alerts generated and reviewed for suspicious activity?"}
+
+  # Security incident management
+  - {id: G076, domain: SEF, expect: answerable, question: "Do you have a documented security incident response process?"}
+  - {id: G077, domain: SEF, expect: answerable, question: "How are security incidents classified by severity?"}
+  - {id: G078, domain: SEF, expect: answerable, question: "Do you have a communication plan for notifying stakeholders about security incidents?"}
+  - {id: G079, domain: SEF, expect: partial, question: "Are post-incident reviews or retrospectives performed?"}
+  - {id: G080, domain: SEF, expect: partial, question: "How quickly do you notify customers of a confirmed data breach?"}
+  - {id: G081, domain: SEF, expect: partial, question: "Is there a 24/7 on-call capability for responding to security incidents?"}
+
+  # Supply chain and third parties
+  - {id: G082, domain: STA, expect: answerable, question: "Do you assess the security of third-party vendors before using them?"}
+  - {id: G083, domain: STA, expect: answerable, question: "Is third-party risk assessment based on the sensitivity of data the vendor handles?"}
+  - {id: G084, domain: STA, expect: partial, question: "Do you require vendors to provide security attestations such as SOC 2 reports?"}
+  - {id: G085, domain: STA, expect: partial, question: "Are vendors reassessed periodically?"}
+  - {id: G086, domain: STA, expect: partial, question: "Do you investigate software supply chain risks in your dependencies?"}
+  - {id: G087, domain: STA, expect: unanswerable, question: "Provide the full list of subprocessors and their countries of operation."}
+
+  # Threat and vulnerability management
+  - {id: G088, domain: TVM, expect: answerable, question: "Do you perform penetration tests, and how often?"}
+  - {id: G089, domain: TVM, expect: answerable, question: "What are your remediation timelines for vulnerabilities by severity?"}
+  - {id: G090, domain: TVM, expect: answerable, question: "Do you run a bug bounty program?"}
+  - {id: G091, domain: TVM, expect: answerable, question: "How are vulnerability findings triaged?"}
+  - {id: G092, domain: TVM, expect: partial, question: "Are infrastructure vulnerability scans run on a schedule?"}
+  - {id: G093, domain: TVM, expect: partial, question: "How do you define what counts as a vulnerability?"}
+  - {id: G094, domain: TVM, expect: unanswerable, question: "How many critical vulnerabilities were open in production at the end of last month?"}
+
+  # Endpoint management
+  - {id: G095, domain: UEM, expect: partial, question: "Are employee laptops required to use full-disk encryption?"}
+  - {id: G096, domain: UEM, expect: partial, question: "Are company devices centrally managed and kept up to date?"}
+  - {id: G097, domain: UEM, expect: partial, question: "Is endpoint protection or malware detection installed on employee devices?"}
+  - {id: G098, domain: UEM, expect: partial, question: "Can company data be wiped from a lost or stolen device?"}
+  - {id: G099, domain: UEM, expect: partial, question: "Are USB storage devices restricted or required to be encrypted?"}
+  - {id: G100, domain: UEM, expect: unanswerable, question: "What brand and model of laptop is issued to engineers?"}

@@ -7,11 +7,14 @@ name goes through LiteLLM (install the `api` extra), so agents can switch by con
 
 from __future__ import annotations
 
+import json
+import re
 import time
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, TypeVar
 
 import httpx
+from pydantic import BaseModel, ValidationError
 
 from trustdesk.config import LlmCfg
 
@@ -63,6 +66,10 @@ def _litellm(
         import litellm
     except ImportError as exc:  # pragma: no cover - depends on optional extra
         raise SystemExit("API models need the extra: uv sync --extra api") from exc
+    from trustdesk.config import load_env
+
+    load_env()
+    litellm.suppress_debug_info = True
     t0 = time.perf_counter()
     resp = litellm.completion(
         model=model,
@@ -84,10 +91,72 @@ def _litellm(
     )
 
 
+def inline_schema(schema: dict[str, Any]) -> dict[str, Any]:
+    """Resolve local $ref/$defs so every provider accepts the schema."""
+    defs = schema.get("$defs", {})
+
+    def walk(node: Any) -> Any:
+        if isinstance(node, dict):
+            if "$ref" in node:
+                return walk(defs[node["$ref"].split("/")[-1]])
+            return {k: walk(v) for k, v in node.items() if k != "$defs"}
+        if isinstance(node, list):
+            return [walk(v) for v in node]
+        return node
+
+    result: dict[str, Any] = walk(schema)
+    return result
+
+
 def complete_json(
-    model: str, system: str, user: str, schema: dict[str, Any], cfg: LlmCfg
+    model: str, system: str, user: str, schema: dict[str, Any], cfg: LlmCfg, name: str = "llm"
 ) -> LlmResult:
+    from trustdesk.telemetry import INPUT, MODEL, OUTPUT, TOK_COMPLETION, TOK_PROMPT, span
+
     messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
-    if model.startswith("ollama/"):
-        return _ollama(model.removeprefix("ollama/"), messages, schema, cfg)
-    return _litellm(model, messages, schema, cfg)
+    schema = inline_schema(schema)
+    with span(name, "LLM", **{MODEL: model, INPUT: user[:4000]}) as s:
+        if model.startswith("ollama/"):
+            res = _ollama(model.removeprefix("ollama/"), messages, schema, cfg)
+        else:
+            res = _litellm(model, messages, schema, cfg)
+        s.set_attribute(OUTPUT, res.content[:4000])
+        s.set_attribute(TOK_PROMPT, res.prompt_tokens)
+        s.set_attribute(TOK_COMPLETION, res.output_tokens)
+        return res
+
+
+T = TypeVar("T", bound=BaseModel)
+
+
+def parse_model[T: BaseModel](content: str, cls: type[T]) -> T:
+    """Parse JSON (optionally fenced) into a Pydantic model."""
+    content = content.strip()
+    if content.startswith("```"):
+        content = re.sub(r"^```(?:json)?|```$", "", content, flags=re.M).strip()
+    return cls.model_validate(json.loads(content))
+
+
+def structured[T: BaseModel](
+    model: str, system: str, user: str, cls: type[T], cfg: LlmCfg, name: str = "llm"
+) -> tuple[T | None, str | None, LlmResult, float]:
+    """Call a model for JSON matching cls, with one repair retry (R10).
+
+    Returns (parsed or None, last error, last raw result, total seconds).
+    """
+    schema = cls.model_json_schema()
+    total = 0.0
+    error: str | None = None
+    res: LlmResult | None = None
+    for attempt in range(2):
+        prompt = user
+        if attempt:
+            prompt += f"\n\nYour previous reply was invalid: {error}. Reply with valid JSON only."
+        res = complete_json(model, system, prompt, schema, cfg, name=name)
+        total += res.seconds
+        try:
+            return parse_model(res.content, cls), None, res, total
+        except (json.JSONDecodeError, ValidationError) as exc:
+            error = str(exc).splitlines()[0][:200]
+    assert res is not None
+    return None, error, res, total

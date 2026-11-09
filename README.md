@@ -4,9 +4,10 @@ A multi-agent assistant that drafts answers to vendor security questionnaires fr
 policy documents. Every answer cites the exact policy passage, flags questions the policies do not
 cover, and waits for a human to approve it.
 
-> Status: **phase 1 of 6 — RAG baseline.** Single-chain answering with citations over GitLab's public
-> security handbook. Multi-agent LangGraph orchestration, evals, guardrails and the review UI follow
-> in later phases. Full plan: [requirements and design doc](https://claude.ai/artifact/EHk26QLd69ek2ciwzUrN5M).
+> Status: **phase 1 of 6 complete (RAG baseline); phase 2 (golden set, LLM judge, tracing) in
+> progress.** Multi-agent LangGraph orchestration, guardrails and the review UI follow in later
+> phases. Progress: [build log](docs/BUILD_LOG.md). Full plan:
+> [requirements and design doc](https://claude.ai/artifact/EHk26QLd69ek2ciwzUrN5M).
 
 ## Quick start (Windows, macOS or Linux)
 

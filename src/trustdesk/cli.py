@@ -18,7 +18,68 @@ from trustdesk.ingest.index import build_index
 from trustdesk.retrieval.dense import search
 
 app = typer.Typer(add_completion=False, help="TrustDesk: cited answers to security questionnaires.")
+golden_app = typer.Typer(help="Golden set: reference answers for evaluation.")
+app.add_typer(golden_app, name="golden")
 console = Console()
+
+
+def _ids(ids: str | None) -> set[str] | None:
+    return {i.strip() for i in ids.split(",")} if ids else None
+
+
+@golden_app.command("build")
+def golden_build(
+    ids: str | None = typer.Option(None, help="Comma-separated IDs, e.g. G001,G002"),
+) -> None:
+    """Draft reference answers with the API reference model (skips verified entries)."""
+    from trustdesk.evals.golden import build_references
+
+    refs = build_references(config.settings(), _ids(ids), log=console.print)
+    console.print(f"[green]{len(refs)} references in evals/golden/references.yaml[/]")
+
+
+@golden_app.command("stats")
+def golden_stats() -> None:
+    """Label counts, expected-vs-drafted agreement and verification progress."""
+    from collections import Counter
+
+    from trustdesk.evals.golden import load_questions, load_references
+
+    qs = {q.id: q for q in load_questions()}
+    refs = load_references()
+    labels = Counter(r.label for r in refs.values())
+    same = sum(1 for r in refs.values() if qs[r.id].expect == r.label)
+    console.print(
+        f"questions {len(qs)} · references {len(refs)} · verified "
+        f"{sum(r.verified for r in refs.values())}"
+    )
+    console.print(f"labels {dict(labels)} · drafted label matches our prior {same}/{len(refs)}")
+
+
+@app.command("eval")
+def eval_cmd(
+    mode: str = typer.Option("local", help="local = Ollama drafter, api = API drafter"),
+    limit: int | None = typer.Option(None, help="Only the first N questions"),
+    ids: str | None = typer.Option(None, help="Comma-separated question IDs"),
+    no_judge: bool = typer.Option(False, help="Skip the LLM judge"),
+    verified_only: bool = typer.Option(False, help="Only human-verified references"),
+) -> None:
+    """Run the golden set, judge it, and write reports/evals/eval-<time>.md."""
+    from trustdesk.evals.run import run_eval
+
+    summary, report = run_eval(
+        config.settings(), mode, limit, _ids(ids), not no_judge, verified_only, log=console.print
+    )
+    console.print_json(json.dumps(summary))
+    console.print(f"[green]Report: {report}[/]")
+
+
+@app.command("agreement")
+def agreement_cmd(sheet: Path) -> None:
+    """Judge-vs-human agreement and Cohen's kappa from a filled judge_validation sheet (E6)."""
+    from trustdesk.evals.run import judge_agreement
+
+    console.print_json(json.dumps(judge_agreement(sheet)))
 
 
 @app.command()

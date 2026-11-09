@@ -21,3 +21,4 @@ data/
 # Local run outputs (raw JSONL and console logs stay local; summaries are committed)
 reports/runs/
 reports/*.txt
+reports/traces/

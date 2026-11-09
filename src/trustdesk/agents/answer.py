@@ -6,15 +6,15 @@ the DraftAnswer contract stays the same.
 
 from __future__ import annotations
 
-import json
 import re
 from typing import Literal
 
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, Field
 
 from trustdesk.config import Settings
-from trustdesk.llm import LlmResult, complete_json
+from trustdesk.llm import parse_model, structured
 from trustdesk.retrieval.dense import ChunkHit, search
+from trustdesk.telemetry import INPUT, OUTPUT, current_trace_id, span
 
 PROMPT_VERSION = "answer-v1"
 
@@ -63,6 +63,7 @@ class AnswerResult(BaseModel):
     prompt_tokens: int = 0
     output_tokens: int = 0
     output_tok_s: float = 0.0
+    trace_id: str = ""
 
     @property
     def citations_ok(self) -> bool:
@@ -103,42 +104,35 @@ def build_user_prompt(question: str, hits: list[ChunkHit]) -> str:
 
 
 def parse_draft(content: str) -> DraftAnswer:
-    content = content.strip()
-    if content.startswith("```"):
-        content = re.sub(r"^```(?:json)?|```$", "", content, flags=re.M).strip()
-    return DraftAnswer.model_validate(json.loads(content))
+    return parse_model(content, DraftAnswer)
 
 
-def answer(question: str, cfg: Settings) -> AnswerResult:
-    hits = search(question, cfg)
-    user = build_user_prompt(question, hits)
-    schema = DraftAnswer.model_json_schema()
-    total_secs = 0.0
-    last: LlmResult | None = None
-    error: str | None = None
-    draft: DraftAnswer | None = None
-    for attempt in range(2):  # one repair retry (R10)
-        prompt = user
-        if attempt:
-            prompt += f"\n\nYour previous reply was invalid: {error}. Reply with valid JSON only."
-        last = complete_json(cfg.llm.drafter, SYSTEM_PROMPT, prompt, schema, cfg.llm)
-        total_secs += last.seconds
-        try:
-            draft = parse_draft(last.content)
-            error = None
-            break
-        except (json.JSONDecodeError, ValidationError) as exc:
-            error = str(exc).splitlines()[0][:200]
-    assert last is not None
-    return AnswerResult(
-        question=question,
-        draft=draft,
-        error=error,
-        checks=check_citations(draft, hits) if draft else [],
-        hits=hits,
-        model=last.model,
-        seconds=round(total_secs, 2),
-        prompt_tokens=last.prompt_tokens,
-        output_tokens=last.output_tokens,
-        output_tok_s=round(last.output_tok_s, 2),
-    )
+def answer(question: str, cfg: Settings, drafter: str | None = None) -> AnswerResult:
+    model = drafter or cfg.llm.drafter
+    with span("answer", "CHAIN", **{INPUT: question, "prompt.version": PROMPT_VERSION}) as s:
+        hits = search(question, cfg)
+        user = build_user_prompt(question, hits)
+        draft, error, last, secs = structured(
+            model, SYSTEM_PROMPT, user, DraftAnswer, cfg.llm, name="draft"
+        )
+        checks = check_citations(draft, hits) if draft else []
+        if draft:
+            s.set_attribute(OUTPUT, draft.model_dump_json())
+            s.set_attribute("trustdesk.abstain", draft.abstain)
+        s.set_attribute(
+            "trustdesk.citations_verified", sum(c.in_context and c.quote_found for c in checks)
+        )
+        s.set_attribute("trustdesk.citations_total", len(checks))
+        return AnswerResult(
+            question=question,
+            draft=draft,
+            error=error,
+            checks=checks,
+            hits=hits,
+            model=last.model,
+            seconds=round(secs, 2),
+            prompt_tokens=last.prompt_tokens,
+            output_tokens=last.output_tokens,
+            output_tok_s=round(last.output_tok_s, 2),
+            trace_id=current_trace_id(),
+        )

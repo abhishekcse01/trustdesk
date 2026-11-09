@@ -33,6 +33,19 @@ class LlmCfg(BaseModel):
     timeout_s: float = 600
 
 
+class EvalCfg(BaseModel):
+    # Empty string = pick automatically from whichever API key is in .env.
+    reference_model: str = ""
+    judge_model: str = ""
+    api_drafter: str = ""
+    reference_top_k: int = 10
+
+
+class TracingCfg(BaseModel):
+    service_name: str = "trustdesk"
+    jsonl_dir: str = "reports/traces"
+
+
 class Settings(BaseModel):
     data_dir: str = "data"
     raw_dir: str = "data/raw"
@@ -42,6 +55,52 @@ class Settings(BaseModel):
     embedding: EmbeddingCfg = EmbeddingCfg()
     retrieval: RetrievalCfg = RetrievalCfg()
     llm: LlmCfg = LlmCfg()
+    eval: EvalCfg = EvalCfg()
+    tracing: TracingCfg = TracingCfg()
+
+
+# Defaults per provider: (reference drafter, judge, API-mode drafter).
+PROVIDER_DEFAULTS = {
+    "ANTHROPIC_API_KEY": (
+        "anthropic/claude-sonnet-5-5",
+        "anthropic/claude-haiku-5-5",
+        "anthropic/claude-haiku-5-5",
+    ),
+}
+
+
+def api_model(kind: str) -> str:
+    """Resolve the model for kind in {"reference", "judge", "drafter"}.
+
+    An explicit value in settings.yaml wins; otherwise the provider whose key is set.
+    """
+    load_env()
+    cfg = settings().eval
+    explicit = {
+        "reference": cfg.reference_model,
+        "judge": cfg.judge_model,
+        "drafter": cfg.api_drafter,
+    }
+    if explicit[kind]:
+        return explicit[kind]
+    idx = {"reference": 0, "judge": 1, "drafter": 2}[kind]
+    for key, models in PROVIDER_DEFAULTS.items():
+        if os.environ.get(key):
+            return models[idx]
+    if os.environ.get("OPENAI_API_KEY"):
+        raise SystemExit(
+            f"OPENAI_API_KEY found: set eval.{kind}_model (e.g. openai/<model>) "
+            "in config/settings.yaml"
+        )
+    raise SystemExit("No API key found. Add ANTHROPIC_API_KEY or OPENAI_API_KEY to .env")
+
+
+@lru_cache(maxsize=1)
+def load_env() -> bool:
+    """Load .env from the repo root (keys stay in the environment, never in settings)."""
+    from dotenv import load_dotenv
+
+    return load_dotenv(repo_root() / ".env")
 
 
 class Source(BaseModel):

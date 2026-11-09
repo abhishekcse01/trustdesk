@@ -24,3 +24,16 @@ llm:
   temperature: 0.1
   num_ctx: 8192
   timeout_s: 600
+
+eval:
+  # Leave empty to choose from the key in .env (Anthropic: Sonnet drafts references,
+  # Haiku judges). With OPENAI_API_KEY, set these to openai/<model> names.
+  reference_model: ""
+  judge_model: ""
+  api_drafter: ""        # used by `trustdesk eval --mode api`
+  reference_top_k: 10    # chunks the reference drafter may read
+
+tracing:
+  service_name: trustdesk
+  jsonl_dir: reports/traces   # git-ignored; set OTEL_EXPORTER_OTLP_ENDPOINT to also export
+
