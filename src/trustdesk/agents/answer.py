@@ -13,7 +13,8 @@ from pydantic import BaseModel, Field
 
 from trustdesk.config import Settings
 from trustdesk.llm import parse_model, structured
-from trustdesk.retrieval.dense import ChunkHit, search
+from trustdesk.retrieval.dense import ChunkHit
+from trustdesk.retrieval.search import search
 from trustdesk.telemetry import INPUT, OUTPUT, current_trace_id, span
 
 PROMPT_VERSION = "answer-v1"

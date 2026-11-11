@@ -15,6 +15,11 @@ embedding:
 
 retrieval:
   top_k: 3
+  mode: hybrid           # dense | hybrid (dense + BM25 fused with reciprocal rank fusion)
+  rerank: true           # cross-encoder rerank of the candidate pool (phase 3 choice, see reports/phase3.md)
+  candidates: 20         # pool size per retriever before fusion / reranking
+  rrf_k: 60
+  reranker_model: Xenova/ms-marco-MiniLM-L-6-v2   # ~90 MB ONNX, CPU
 
 llm:
   # Model alias used by the single-chain answerer in phase 1.
@@ -26,12 +31,17 @@ llm:
   timeout_s: 600
 
 eval:
-  # Leave empty to choose from the key in .env (Anthropic: Sonnet drafts references,
-  # Haiku judges). With OPENAI_API_KEY, set these to openai/<model> names.
+  # Leave empty to choose from the key in .env. Gemini free tier: Flash-Lite for all three
+  # (~500 requests/day); `trustdesk models` lists names your key can use. Anthropic: Sonnet
+  # drafts references, Haiku judges. With OPENAI_API_KEY, set these to openai/<model> names.
   reference_model: ""
   judge_model: ""
   api_drafter: ""        # used by `trustdesk eval --mode api`
-  reference_top_k: 10    # chunks the reference drafter may read
+  reference_top_k: 4     # chunks the reference drafter reads (~1.5k input tokens per call)
+  max_output_tokens: 400 # cap on every API reply
+  judge_chunk_chars: 800 # judge sees each retrieved chunk cut to this length
+  min_interval_s: 0      # 0 = automatic (4.5 s between Gemini calls = under 15/min)
+  max_retries: 4         # on rate-limit / unavailable errors, backing off 5-40 s
 
 tracing:
   service_name: trustdesk

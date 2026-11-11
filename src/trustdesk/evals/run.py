@@ -59,11 +59,15 @@ def run_eval(
                 "trace_id": res.trace_id,
             }
             if use_judge:
-                verdict, err = judge(ref, res, cfg, judge_model)
+                try:
+                    verdict, err = judge(ref, res, cfg, judge_model)
+                except Exception as exc:  # network or provider failure: record it, keep going
+                    verdict, err = None, f"{type(exc).__name__}: {str(exc)[:150]}"
                 row["judge"] = verdict.model_dump() if verdict else None
                 row["judge_error"] = err
             rows.append(row)
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            f.flush()  # a crash or network drop loses at most the current question
             j = row.get("judge") or {}
             log(
                 f"  [{i:>3}/{len(refs)}] {ref.id} {ref.label:<12} -> "
@@ -86,6 +90,36 @@ def run_eval(
     report = write_report(summary, rows, stamp)
     if use_judge:
         export_judge_sheet(rows, stamp)
+    return summary, report
+
+
+def report_from_runs(
+    files: list[Path], drafter: str, judge_model: str
+) -> tuple[dict[str, Any], Path]:
+    """Combine one or more eval JSONL files (later files win per question) into one report."""
+    by_id: dict[str, dict[str, Any]] = {}
+    for file in files:
+        for line in file.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                row = json.loads(line)
+                by_id[row["id"]] = row
+    rows = [by_id[k] for k in sorted(by_id)]
+    stamp = f"{datetime.now():%Y%m%d-%H%M%S}"
+    summary = summarize(rows)
+    summary.update(
+        {
+            "run": stamp,
+            "mode": "combined",
+            "drafter": drafter,
+            "judge": judge_model,
+            "prompt_version": PROMPT_VERSION,
+            "judge_version": JUDGE_VERSION,
+            "verified_references": sum(1 for r in rows if r.get("verified")),
+            "sources": [f.name for f in files],
+        }
+    )
+    report = write_report(summary, rows, stamp)
+    export_judge_sheet(rows, stamp)
     return summary, report
 
 

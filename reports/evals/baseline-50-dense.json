@@ -1,0 +1,30 @@
+{
+  "questions": 50,
+  "valid_output_rate": 1.0,
+  "retrieval_hit_at_3": 1.0,
+  "retrieval_mrr": 0.967,
+  "citation_accuracy": 0.696,
+  "correct_abstention_rate": 0.65,
+  "false_abstention_rate": 0.033,
+  "median_seconds": 24.4,
+  "judged": 50,
+  "judge_failures": 0,
+  "correctness": 0.73,
+  "faithfulness": 0.773,
+  "correctness_by_label": {
+    "answerable": 0.833,
+    "partial": 0.5,
+    "unanswerable": 0.675
+  },
+  "run": "20261111-155038",
+  "mode": "combined",
+  "drafter": "ollama/qwen3:4b",
+  "judge": "gemini/gemini-3.5-flash-lite",
+  "prompt_version": "answer-v1",
+  "judge_version": "judge-v1",
+  "verified_references": 0,
+  "sources": [
+    "eval-20261110-221935.jsonl",
+    "eval-20261111-154845.jsonl"
+  ]
+}

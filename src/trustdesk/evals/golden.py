@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 
 from trustdesk.config import Settings, api_model, path
 from trustdesk.llm import structured
-from trustdesk.retrieval.dense import search
+from trustdesk.retrieval.search import search
 
 Label = Literal["answerable", "partial", "unanswerable"]
 
@@ -34,6 +34,10 @@ unanswerable questions, say what is not covered.
 - key_facts: the 1-5 atomic facts a correct answer must contain (empty if unanswerable).
 - supporting: chunk_id and an exact quote (max 30 words, copied word for word) for each key fact.
 Never use outside knowledge about the company."""
+
+
+class DraftError(Exception):
+    """The reference model's reply could not be parsed, even after a repair retry."""
 
 
 class GoldenQuestion(BaseModel):
@@ -93,7 +97,7 @@ def save_references(refs: dict[str, Reference]) -> None:
     path(REFERENCES).write_text(header + body, encoding="utf-8")
 
 
-def draft_reference(q: GoldenQuestion, cfg: Settings, model: str) -> Reference | None:
+def draft_reference(q: GoldenQuestion, cfg: Settings, model: str) -> Reference:
     hits = search(q.question, cfg, k=cfg.eval.reference_top_k)
     by_id = {h.chunk_id: h for h in hits}
     context = "\n\n".join(
@@ -101,11 +105,12 @@ def draft_reference(q: GoldenQuestion, cfg: Settings, model: str) -> Reference |
         for h in hits
     )
     user = f"QUESTION: {q.question}\n\nCONTEXT:\n{context}"
-    draft, _error, _, _ = structured(
+    draft, error, raw, _ = structured(
         model, REFERENCE_PROMPT, user, ReferenceDraft, cfg.llm, "reference"
     )
     if draft is None:
-        return None
+        tail = raw.content[-80:].replace("\n", " ")
+        raise DraftError(f"{error} | {raw.output_tokens} output tokens | ends: ...{tail}")
     urls = list(
         dict.fromkeys(by_id[s.chunk_id].url for s in draft.supporting if s.chunk_id in by_id)
     )
@@ -132,9 +137,10 @@ def build_references(
             continue
         if q.id in refs and refs[q.id].verified:
             continue
-        ref = draft_reference(q, cfg, model)
-        if ref is None:
-            log(f"  {q.id} failed to draft")
+        try:
+            ref = draft_reference(q, cfg, model)
+        except DraftError as exc:
+            log(f"  {q.id} failed to draft: {exc}")
             continue
         refs[q.id] = ref
         save_references(refs)  # save as we go so a crash loses nothing

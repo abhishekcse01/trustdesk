@@ -1,0 +1,34 @@
+[
+  {
+    "config": "dense",
+    "questions": 66,
+    "hit_at_1": 0.848,
+    "hit_at_3": 0.985,
+    "mrr_at_10": 0.915,
+    "ms_per_query": 29
+  },
+  {
+    "config": "dense + rerank",
+    "questions": 66,
+    "hit_at_1": 0.864,
+    "hit_at_3": 1.0,
+    "mrr_at_10": 0.924,
+    "ms_per_query": 1790
+  },
+  {
+    "config": "hybrid (RRF)",
+    "questions": 66,
+    "hit_at_1": 0.833,
+    "hit_at_3": 0.985,
+    "mrr_at_10": 0.904,
+    "ms_per_query": 55
+  },
+  {
+    "config": "hybrid + rerank",
+    "questions": 66,
+    "hit_at_1": 0.803,
+    "hit_at_3": 0.985,
+    "mrr_at_10": 0.893,
+    "ms_per_query": 1787
+  }
+]

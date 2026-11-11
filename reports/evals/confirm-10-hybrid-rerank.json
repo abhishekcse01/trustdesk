@@ -1,0 +1,26 @@
+{
+  "questions": 10,
+  "valid_output_rate": 1.0,
+  "retrieval_hit_at_3": 1.0,
+  "retrieval_mrr": 1.0,
+  "citation_accuracy": 0.583,
+  "correct_abstention_rate": 0.0,
+  "false_abstention_rate": 0.0,
+  "median_seconds": 25.3,
+  "judged": 10,
+  "judge_failures": 0,
+  "correctness": 0.4,
+  "faithfulness": 0.633,
+  "correctness_by_label": {
+    "answerable": 0.5,
+    "partial": 1.0,
+    "unanswerable": 0.25
+  },
+  "run": "20261111-155701",
+  "mode": "local",
+  "drafter": "ollama/qwen3:4b",
+  "judge": "gemini/gemini-3.5-flash-lite",
+  "prompt_version": "answer-v1",
+  "judge_version": "judge-v1",
+  "verified_references": 0
+}

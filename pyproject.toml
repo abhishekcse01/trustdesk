@@ -15,6 +15,7 @@ dependencies = [
     "opentelemetry-sdk>=1.27",
     "pydantic>=2.7",
     "python-dotenv>=1.0",
+    "rank-bm25>=0.2.2",
     "pyyaml>=6.0",
     "rich>=13.7",
     "typer>=0.12",
@@ -70,7 +71,7 @@ mypy_path = "src"
 packages = ["trustdesk"]
 
 [[tool.mypy.overrides]]
-module = ["chromadb.*", "fastembed.*", "markdownify.*", "bs4.*", "litellm.*", "grpc.*"]
+module = ["chromadb.*", "fastembed.*", "markdownify.*", "bs4.*", "litellm.*", "grpc.*", "rank_bm25.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]

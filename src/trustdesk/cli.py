@@ -15,7 +15,7 @@ from trustdesk import config
 from trustdesk.agents.answer import AnswerResult, answer
 from trustdesk.ingest.fetch import crawl_source
 from trustdesk.ingest.index import build_index
-from trustdesk.retrieval.dense import search
+from trustdesk.retrieval.search import search
 
 app = typer.Typer(add_completion=False, help="TrustDesk: cited answers to security questionnaires.")
 golden_app = typer.Typer(help="Golden set: reference answers for evaluation.")
@@ -72,6 +72,60 @@ def eval_cmd(
     )
     console.print_json(json.dumps(summary))
     console.print(f"[green]Report: {report}[/]")
+
+
+@app.command("report")
+def report_cmd(runs: list[Path]) -> None:
+    """Combine eval JSONL files from reports/runs/ into one report (e.g. after a resumed run)."""
+    from trustdesk.evals.run import report_from_runs
+
+    cfg = config.settings()
+    summary, report = report_from_runs(runs, cfg.llm.drafter, config.api_model("judge"))
+    console.print_json(json.dumps(summary))
+    console.print(f"[green]Report: {report}[/]")
+
+
+@app.command("grid")
+def grid_cmd(
+    configs: str | None = typer.Option(
+        None, help='Comma-separated names, e.g. "dense,hybrid (RRF)"'
+    ),
+) -> None:
+    """Compare retrieval configs on the golden set (hit@1, hit@3, MRR). No API calls."""
+    from trustdesk.evals.grid import run_grid
+
+    names = [c.strip() for c in configs.split(",")] if configs else None
+    _, report = run_grid(config.settings(), names, log=console.print)
+    console.print(f"[green]Report: {report}[/]")
+
+
+@app.command("models")
+def models_cmd() -> None:
+    """List the Gemini models your GEMINI_API_KEY can call (names only)."""
+    import os
+
+    import httpx
+
+    config.load_env()
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key:
+        raise SystemExit("GEMINI_API_KEY is empty in .env")
+    r = httpx.get(
+        "https://generativelanguage.googleapis.com/v1beta/models",
+        headers={"x-goog-api-key": key},  # header, never the URL, so the key stays out of logs
+        params={"pageSize": 1000},
+        timeout=30,
+    )
+    if r.status_code != 200:
+        raise SystemExit(f"Gemini API returned {r.status_code}: check the key in .env")
+    names = sorted(
+        m["name"].removeprefix("models/")
+        for m in r.json().get("models", [])
+        if "generateContent" in m.get("supportedGenerationMethods", [])
+    )
+    for n in names:
+        console.print(f"gemini/{n}")
+    console.print(f"[dim]{len(names)} models. Current choice: {config.api_model('judge')}[/]")
 
 
 @app.command("agreement")

@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 import yaml
 from pydantic import BaseModel
@@ -23,6 +24,11 @@ class EmbeddingCfg(BaseModel):
 
 class RetrievalCfg(BaseModel):
     top_k: int = 3
+    mode: Literal["dense", "hybrid"] = "dense"
+    rerank: bool = False
+    candidates: int = 20  # pool size per retriever before fusion / reranking
+    rrf_k: int = 60
+    reranker_model: str = "Xenova/ms-marco-MiniLM-L-6-v2"
 
 
 class LlmCfg(BaseModel):
@@ -38,7 +44,13 @@ class EvalCfg(BaseModel):
     reference_model: str = ""
     judge_model: str = ""
     api_drafter: str = ""
-    reference_top_k: int = 10
+    reference_top_k: int = 4
+    # Token budget for API calls (free tier): cap each reply and each context chunk.
+    max_output_tokens: int = 400
+    judge_chunk_chars: int = 800
+    # Seconds between API calls; 0 = automatic (4.5 s for Gemini's free tier, 15 req/min).
+    min_interval_s: float = 0.0
+    max_retries: int = 4
 
 
 class TracingCfg(BaseModel):
@@ -66,7 +78,22 @@ PROVIDER_DEFAULTS = {
         "anthropic/claude-haiku-5-5",
         "anthropic/claude-haiku-5-5",
     ),
+    # Free tier: Flash-Lite allows ~500 requests/day; Flash only ~20/day (Nov 2026 reports).
+    # Run `trustdesk models` to see the exact names your key can use.
+    "GEMINI_API_KEY": (
+        "gemini/gemini-3.5-flash-lite",
+        "gemini/gemini-3.5-flash-lite",
+        "gemini/gemini-3.5-flash-lite",
+    ),
 }
+
+
+def min_interval(model: str) -> float:
+    """Pause between API calls, to stay under free-tier rate limits."""
+    cfg = settings().eval
+    if cfg.min_interval_s:
+        return cfg.min_interval_s
+    return 4.5 if model.startswith("gemini/") else 0.0
 
 
 def api_model(kind: str) -> str:
@@ -92,7 +119,9 @@ def api_model(kind: str) -> str:
             f"OPENAI_API_KEY found: set eval.{kind}_model (e.g. openai/<model>) "
             "in config/settings.yaml"
         )
-    raise SystemExit("No API key found. Add ANTHROPIC_API_KEY or OPENAI_API_KEY to .env")
+    raise SystemExit(
+        "No API key found. Add GEMINI_API_KEY, ANTHROPIC_API_KEY or OPENAI_API_KEY to .env"
+    )
 
 
 @lru_cache(maxsize=1)

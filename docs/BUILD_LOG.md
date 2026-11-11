@@ -1,8 +1,43 @@
 # Build log
 
 A running record of what was built, measured and decided. Newest first.
+Visual version: [TrustDesk System Map](https://claude.ai/artifact/J9jzu6bcA2yayhfQ67JAge) (private).
 
-## 2026-11-09 · Phase 2 (in progress): golden set, evals, tracing
+## 2026-11-11 · Phase 3 complete: hybrid search + reranking ([report](../reports/phase3.md))
+
+- BM25 keyword index (`retrieval/bm25.py`), hybrid retrieval with reciprocal rank fusion and a
+  cross-encoder reranker (`retrieval/search.py`, MiniLM via fastembed on CPU, ~1.8 s/question).
+- `trustdesk grid` compares retrieval setups with no LLM calls
+  ([results](../reports/evals/grid-retrieval.md)): all four keep ~98% hit@3, but the benchmark
+  favours dense because references were drafted from dense results.
+- A qualitative check on hard questions showed hybrid + rerank finding the right policy where
+  dense missed it (SDLC standard for change approval; Encryption Policy for TLS).
+- 10-question confirmation ([results](../reports/evals/confirm-10-hybrid-rerank.md)): of 9
+  baseline failures, 3 now correct and 1 partly correct (selection bias stated).
+- **Default is now `retrieval.mode: hybrid`, `retrieval.rerank: true`.**
+- Deferred to phase 4: query rewriting, confidence calibration, fixing over-answering (Verifier).
+
+## 2026-11-10 · Phase 2 measured ([report](../reports/phase2.md))
+
+- Judge and reference model: Gemini 3.5 Flash-Lite on the free tier. `trustdesk models` lists
+  usable names; calls throttled to 4.5 s, retried with back-off, capped at 400 output tokens,
+  4 chunks per reference, judge chunks cut to 800 characters. About 170 Gemini calls used.
+- 97 of 100 references drafted (3 overran the token cap and were skipped); none verified yet.
+- Baseline on a balanced 50 across 17 domains ([results](../reports/evals/baseline-50-dense.md)):
+  correctness 73%, faithfulness 77%, citation accuracy 70%, correct abstention 65%,
+  false abstention 3%, median 24 s. Main failure: over-answering.
+- A DNS failure crashed the run at question 48: rows are now flushed per question, connection
+  errors retry, judge failures are recorded, and `trustdesk report` combines partial runs.
+
+**Waiting on you**
+
+- [ ] Review `evals/golden/references.yaml` and set `verified: true` on checked entries
+- [ ] Fill `human_correctness` (correct / partially_correct / incorrect) in
+      `evals/judge_validation/label-me-50.csv`, then run
+      `uv run python -m trustdesk agreement evals/judge_validation/label-me-50.csv`
+- [ ] Approve pushing phases 2 and 3 to GitHub
+
+## 2026-11-09 · Phase 2 (started): golden set, evals, tracing
 
 **Done**
 

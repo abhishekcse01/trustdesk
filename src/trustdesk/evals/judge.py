@@ -67,7 +67,8 @@ def judge(
     else:
         candidate = f"{d.answer_choice or ''} {d.answer_text}".strip()
     facts = "\n".join(f"- {f}" for f in ref.key_facts) or "(none)"
-    context = "\n\n".join(f"[{h.chunk_id}] {h.text}" for h in res.hits)
+    cut = cfg.eval.judge_chunk_chars
+    context = "\n\n".join(f"[{h.chunk_id}] {h.text[:cut]}" for h in res.hits)
     user = (
         f"QUESTION: {ref.question}\n\nREFERENCE (label: {ref.label}):\n{ref.reference_answer}\n"
         f"Key facts:\n{facts}\n\nCANDIDATE:\n{candidate}\n\nCONTEXT:\n{context}"

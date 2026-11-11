@@ -1,0 +1,560 @@
+<title>TrustDesk System Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an engineering board. Status strip on top, the live system map with a side inspector,
+   then the day-by-day log and a study kit. Teal = built/approved, amber = in progress, grey dashed = planned. */
+:root {
+  --bg: #f3f5f3;
+  --surface: #ffffff;
+  --sunk: #e9ede9;
+  --ink: #16201c;
+  --muted: #5b6862;
+  --line: #cdd5d0;
+  --accent: #0d6b57;
+  --accent-tint: #dcefe9;
+  --warn: #9a6512;
+  --warn-tint: #f6ead2;
+  --plan: #8a958f;
+  --focus: #1b7f68;
+  --font-display: "Familjen Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1412; --surface: #161d1a; --sunk: #1d2622; --ink: #e3ebe7; --muted: #9aa8a1;
+    --line: #2c3833; --accent: #4cc4a3; --accent-tint: #173a31; --warn: #e2ad55; --warn-tint: #3a2e17;
+    --plan: #6f7c76; --focus: #6fd8bb; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1412; --surface: #161d1a; --sunk: #1d2622; --ink: #e3ebe7; --muted: #9aa8a1;
+  --line: #2c3833; --accent: #4cc4a3; --accent-tint: #173a31; --warn: #e2ad55; --warn-tint: #3a2e17;
+  --plan: #6f7c76; --focus: #6fd8bb; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 700; }
+h2 { font-size: 21px; font-weight: 600; }
+h3 { font-size: 16px; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); }
+.mono { font-family: var(--font-mono); font-size: 12.5px; }
+.eyebrow { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Header */
+.top { display: grid; gap: 14px; }
+.top-row { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: end; justify-content: space-between; }
+.lede { max-width: 68ch; color: var(--muted); }
+.live { display: inline-flex; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--plan); }
+.dot.ok { background: var(--accent); }
+.dot.wait { background: var(--warn); }
+.phases { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.phase { padding: 10px 12px; border-radius: 6px; background: var(--sunk); border: 1px solid transparent; min-width: 0; }
+.phase .n { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.phase .name { font-weight: 600; font-size: 14px; line-height: 1.25; }
+.phase .st { font-size: 12px; color: var(--muted); }
+.phase.done { background: var(--accent-tint); }
+.phase.done .st { color: var(--accent); font-weight: 600; }
+.phase.in_progress { background: var(--warn-tint); border-color: var(--warn); }
+.phase.in_progress .st { color: var(--warn); font-weight: 600; }
+.metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+.metric { padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.metric b { font-family: var(--font-display); font-size: 18px; font-variant-numeric: tabular-nums; display: block; line-height: 1.2; }
+.metric span { font-size: 12px; color: var(--muted); }
+
+/* Map */
+.board { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 16px; align-items: start; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.map-head { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; padding: 14px 16px 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 12px; font-size: 13px; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--muted); padding: 8px 16px 0; }
+.legend i { display: inline-block; width: 14px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.lg-built { background: var(--accent-tint); border: 1.5px solid var(--accent); }
+.lg-prog { background: var(--warn-tint); border: 1.5px solid var(--warn); }
+.lg-plan { border: 1.5px dashed var(--plan); }
+.map-scroll { overflow-x: auto; padding: 6px 8px 8px; }
+svg.map { display: block; width: 100%; min-width: 760px; height: auto; }
+.lane-label { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.band { fill: var(--sunk); }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.4; }
+.edge.hot { stroke: var(--accent); stroke-width: 2.4; }
+.node { cursor: pointer; }
+.node rect { fill: var(--surface); stroke: var(--plan); stroke-width: 1.3; stroke-dasharray: 5 4; transition: opacity .2s; }
+.node.built rect { fill: var(--accent-tint); stroke: var(--accent); stroke-dasharray: none; }
+.node.in_progress rect { fill: var(--warn-tint); stroke: var(--warn); stroke-dasharray: none; }
+.node text.t { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; fill: var(--ink); }
+.node text.s { font-size: 11px; fill: var(--muted); font-family: var(--font-body); }
+.node.sel rect { stroke-width: 3; }
+.node.today rect { stroke-width: 2.6; }
+.node.dim { opacity: .28; }
+.node.hot rect { stroke: var(--accent); stroke-width: 3.2; stroke-dasharray: none; }
+.marker-fill { fill: var(--line); }
+.marker-hot { fill: var(--accent); }
+
+.flowbar { border-top: 1px solid var(--line); padding: 12px 16px 14px; display: grid; gap: 8px; }
+.flowbar[hidden] { display: none !important; }
+.flow-ctrl { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 5px 12px; font-size: 13.5px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+.step-text { font-size: 15px; max-width: 72ch; }
+.step-n { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+/* Inspector */
+.inspector { padding: 16px; display: grid; gap: 12px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); }
+.badge { display: inline-block; font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.badge.built { color: var(--accent); border-color: var(--accent); }
+.badge.in_progress { color: var(--warn); border-color: var(--warn); }
+.kv { display: grid; gap: 3px; }
+.kv .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.inspector ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; }
+.ask { background: var(--sunk); border-radius: 6px; padding: 10px 12px; font-size: 14px; }
+
+/* Days */
+.days { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 16px; align-items: start; }
+.daylist { display: grid; gap: 6px; }
+.daybtn { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 10px 12px; display: grid; gap: 2px; }
+.daybtn[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.daybtn .d { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+.daybtn .h { font-weight: 600; font-size: 14px; line-height: 1.3; }
+.daycard { padding: 18px; display: grid; gap: 18px; min-width: 0; }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 5px; }
+.lookat { display: grid; gap: 8px; }
+.lookat div { border-left: 2px solid var(--accent); padding-left: 10px; }
+.lookat code { font-family: var(--font-mono); font-size: 12.5px; word-break: break-all; }
+.mtable { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mtable td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.mtable td:nth-child(2) { font-family: var(--font-display); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tagrow { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12.5px; padding: 3px 10px; border-radius: 999px; background: var(--accent-tint); color: var(--ink); border: 0; }
+.empty { padding: 24px; color: var(--muted); }
+
+/* Study kit */
+.kit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.concept { padding: 12px 14px; border-bottom: 1px solid var(--line); display: grid; gap: 3px; }
+.concept:last-child { border-bottom: 0; }
+.concept .topic { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+details.q { border-bottom: 1px solid var(--line); padding: 10px 14px; }
+details.q:last-child { border-bottom: 0; }
+details.q summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; gap: 8px; }
+details.q summary::-webkit-details-marker { display: none; }
+details.q summary::before { content: "+"; font-family: var(--font-mono); color: var(--accent); width: 12px; flex: none; }
+details.q[open] summary::before { content: "−"; }
+details.q p { margin-top: 6px; color: var(--muted); padding-left: 20px; }
+.kit-head { padding: 14px 14px 6px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .board, .days, .kit { grid-template-columns: minmax(0, 1fr); }
+  .inspector { position: static; }
+  .phases { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) { .phases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top-row">
+      <div style="display:grid;gap:6px">
+        <span class="eyebrow">Project map · security questionnaire agent</span>
+        <h1>TrustDesk System Map</h1>
+      </div>
+      <span class="live" id="live"><span class="dot wait"></span><span>Loading progress…</span></span>
+    </div>
+    <p class="lede">How TrustDesk turns public policy pages into cited, human-approved answers. Click any box to see what it does and how it was built, play a flow to watch a request move through the system, and pick a day to see what changed and what to study.</p>
+    <div class="phases" id="phases" aria-label="Roadmap phases"></div>
+    <div class="metrics" id="metrics" aria-label="Latest measured results"></div>
+  </header>
+
+  <section class="board" aria-label="Architecture">
+    <div class="panel">
+      <div class="map-head">
+        <h2>Architecture</h2>
+        <div class="chips" role="group" aria-label="Play a flow" id="flowchips"></div>
+      </div>
+      <div class="legend">
+        <span><i class="lg-built"></i>Built</span>
+        <span><i class="lg-prog"></i>In progress</span>
+        <span><i class="lg-plan"></i>Planned</span>
+        <span id="todayLegend" hidden><i style="border:2.6px solid var(--ink)"></i>Touched on selected day</span>
+      </div>
+      <div class="map-scroll"><svg class="map" id="map" viewBox="0 0 1000 492" role="img" aria-label="TrustDesk architecture: sources, ingestion, storage, retrieval, agents and outputs, with cross-cutting LLM gateway, tracing, evaluation, guardrails and CI"></svg></div>
+      <div class="flowbar" id="flowbar" hidden>
+        <div class="flow-ctrl">
+          <button class="btn" id="prev" type="button">Back</button>
+          <button class="btn primary" id="next" type="button">Next step</button>
+          <button class="btn" id="play" type="button">Play all</button>
+          <button class="btn" id="stop" type="button">Close flow</button>
+          <span class="step-n" id="stepn"></span>
+        </div>
+        <p class="step-text" id="steptext"></p>
+      </div>
+    </div>
+    <aside class="panel inspector" id="inspector" aria-live="polite"></aside>
+  </section>
+
+  <section style="display:grid;gap:12px" aria-label="Daily log">
+    <div class="top-row"><h2>Daily log</h2><span class="muted" style="font-size:13.5px">Each work session adds a day. Its components are outlined on the map above.</span></div>
+    <div class="days">
+      <div class="daylist" id="daylist"></div>
+      <article class="panel daycard" id="daycard"></article>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:12px" aria-label="Study kit">
+    <div class="top-row"><h2>Study kit</h2><span class="muted" style="font-size:13.5px" id="kitscope">Concepts and practice questions from every day so far.</span></div>
+    <div class="kit">
+      <div class="panel"><div class="kit-head"><h3>Key concepts</h3><span class="eyebrow" id="ccount"></span></div><div id="concepts"></div></div>
+      <div class="panel"><div class="kit-head"><h3>Practice questions</h3><span class="eyebrow">tap to reveal</span></div><div id="quiz"></div></div>
+    </div>
+  </section>
+
+  <footer class="muted" style="font-size:13px;display:flex;flex-wrap:wrap;gap:6px 18px">
+    <span>Code: <a href="https://github.com/abhishekcse01/trustdesk" target="_blank" rel="noopener">github.com/abhishekcse01/trustdesk</a></span>
+    <span>Policy text: GitLab Handbook, CC BY-SA 4.0</span>
+    <span id="updated"></span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  // ---------- Static design: components, edges, flows, phases ----------
+  const COL = [20, 185, 350, 515, 680, 845], W = 140, H = 50, Y0 = 26;
+  const LANES = ["Sources", "Ingest", "Store", "Retrieve", "Agents", "Output"];
+  const C = (id, col, y, name, sub, phase, d) => ({ id, x: COL[col], y: y + Y0, name, sub, phase, ...d });
+  const BX = [40, 230, 420, 610, 800];
+  const B = (id, i, name, sub, phase, d) => ({ id, x: BX[i] + 10, y: 404 + Y0, name, sub, phase, band: true, ...d });
+
+  const COMPONENTS = [
+    C("policy", 0, 52, "Policy docs", "GitLab handbook", 1, {
+      what: "The knowledge source: GitLab's public security handbook (policies, standards, procedures).",
+      tech: ["handbook.gitlab.com/handbook/security/", "CC BY-SA 4.0, attributed", "Not committed: re-fetched on demand"],
+      files: ["config/sources.yaml", "docs/data_card.md"],
+      concepts: ["Corpus selection", "Licensing as engineering"],
+      ask: "Why is the corpus not committed to the public repo?" }),
+    C("questionnaire", 0, 242, "Questionnaire", "XLSX / CSV upload", 4, {
+      what: "The customer's spreadsheet of security questions that TrustDesk fills in.",
+      tech: ["openpyxl", "Column-mapping step", "CAIQ layout first"], files: ["src/trustdesk/questionnaire/ (planned)"],
+      concepts: ["Input variety (R11)"], ask: "How would you handle merged cells and multiple sheets?" }),
+    C("crawler", 1, 12, "Crawler", "robots.txt, policy-first", 1, {
+      what: "Fetches policy pages politely and saves them as Markdown with URL, title, fetch time and content hash.",
+      tech: ["httpx + BeautifulSoup + markdownify", "Deny lists for IT how-to sections", "Policy URLs jump the queue", "1 s delay, max 150 pages"],
+      files: ["src/trustdesk/ingest/fetch.py", "config/sources.yaml"],
+      concepts: ["Data quality beats model choice", "Polite crawling"],
+      ask: "The first crawl spent 144 of 203 pages on laptop guides. How did you detect and fix it?" }),
+    C("chunker", 1, 92, "Chunker", "by heading, ~300 tok", 1, {
+      what: "Splits each page into heading-aware chunks of about 300 tokens with 50-token overlap, keeping the heading path.",
+      tech: ["Heading stack → heading_path", "Small sections merge forward", "Stable SHA-1 chunk ids"],
+      files: ["src/trustdesk/ingest/chunk.py", "tests/test_chunk.py"],
+      concepts: ["Chunk size and overlap", "Metadata for citations"],
+      ask: "What goes wrong with chunks that are too big or too small?" }),
+    C("parser", 1, 242, "Parser agent", "typed questions", 4, {
+      what: "Splits an uploaded sheet into questions and classifies each (yes/no, free text, evidence request).",
+      tech: ["LangGraph node", "Pydantic schema"], files: ["planned"], concepts: ["Structured extraction"],
+      ask: "Why classify question types before drafting?" }),
+    C("chroma", 2, 52, "ChromaDB", "1,674 chunks", 1, {
+      what: "Persistent vector store holding chunk embeddings plus metadata (URL, heading path, hash).",
+      tech: ["bge-small-en-v1.5 via fastembed (ONNX, CPU)", "Cosine similarity", "Smart App Control shim for grpc"],
+      files: ["src/trustdesk/ingest/index.py", "src/trustdesk/_compat.py"],
+      concepts: ["Embeddings", "Vector search", "Cosine similarity"],
+      ask: "Why a small embedding model on CPU rather than an API embedding?" }),
+    C("bm25", 2, 132, "BM25 index", "keyword search", 3, {
+      what: "Keyword index so exact terms (AES-256, SOC 2, TLS 1.2) are found even when embeddings miss them.",
+      tech: ["rank_bm25 over the same 1,674 chunks", "Tokenizer keeps aes-256, 1.2 together", "Fused with dense results by RRF"], files: ["src/trustdesk/retrieval/bm25.py"],
+      concepts: ["Hybrid search", "Reciprocal rank fusion"], ask: "When does keyword search beat vector search?" }),
+    C("sqlite", 2, 242, "SQLite", "audit, checkpoints", 4, {
+      what: "App data, the append-only audit log and LangGraph checkpoints so a run survives restarts.",
+      tech: ["SQLAlchemy", "SqliteSaver checkpointer"], files: ["planned: src/trustdesk/store/"],
+      concepts: ["Durable agent state", "Audit trails"], ask: "Why must the human-approval step survive a restart?" }),
+    C("retriever", 3, 52, "Retriever", "hybrid + rerank", 1, {
+      what: "Runs dense and keyword search, fuses them, reranks, and logs chunk ids and scores as a RETRIEVER span.",
+      tech: ["Dense top-20 + BM25 top-20", "Reciprocal rank fusion (k = 60)", "Cross-encoder rerank → top 3", "Mode set in config/settings.yaml"], files: ["src/trustdesk/retrieval/search.py", "reports/phase3.md"],
+      concepts: ["Top-k", "Retrieval metrics: hit@3, MRR"],
+      ask: "Question P15 failed because the right policy was never retrieved. What would you change?" }),
+    C("reranker", 3, 132, "Reranker", "cross-encoder", 3, {
+      what: "Re-scores the candidate chunks with a cross-encoder so the best 3 reach the model.",
+      tech: ["ms-marco-MiniLM-L-6-v2 (ONNX, CPU, ~90 MB)", "~1.8 s per question", "Removes noise hybrid search adds"], files: ["src/trustdesk/retrieval/search.py", "reports/phase3.md"], concepts: ["Bi-encoder vs cross-encoder"],
+      ask: "Why is a cross-encoder more accurate but too slow for first-stage search?" }),
+    C("memory", 3, 242, "Answer memory", "approved answers", 6, {
+      what: "Reuses previously approved answers for similar questions.", tech: ["Separate Chroma collection"],
+      files: ["planned"], concepts: ["Semantic cache", "Long-term agent memory"], ask: "What are the risks of reusing an old approved answer?" }),
+    C("drafter", 4, 52, "Drafter", "Qwen3 4B, JSON", 1, {
+      what: "Writes the answer from the retrieved chunks only, with citations, or abstains when evidence is missing.",
+      tech: ["JSON schema output", "Pydantic validation + 1 repair retry", "Prompt answer-v1", "~34 s per question locally"],
+      files: ["src/trustdesk/agents/answer.py", "src/trustdesk/llm.py"],
+      concepts: ["Structured output", "Grounding rules", "Abstention"],
+      ask: "Why is 'needs human input' a feature, not a failure?" }),
+    C("verifier", 4, 132, "Verifier", "citation checks", 1, {
+      what: "Checks every quote appears word for word in a chunk that was actually retrieved. Becomes a full agent in phase 4.",
+      tech: ["Normalised substring match today", "NLI cross-encoder in phase 4"], files: ["src/trustdesk/agents/answer.py (check_citations)"],
+      concepts: ["Hallucination detection", "Citation accuracy vs faithfulness"],
+      ask: "Phase 1 verified 17/22 quotes. What does a failed quote tell you?" }),
+    C("review", 4, 242, "Human review", "LangGraph interrupt", 4, {
+      what: "Pauses the graph until a security analyst approves, edits or rejects each answer.",
+      tech: ["interrupt() + Command(resume=…)", "Checkpointed state"], files: ["planned: src/trustdesk/graph/"],
+      concepts: ["Human-in-the-loop", "Governance (G1)"], ask: "Why enforce approval in the graph rather than in the UI?" }),
+    C("cli", 5, 52, "CLI", "ask, batch, eval", 1, {
+      what: "Command line for every step: fetch, index, search, ask, batch, golden, eval, agreement.",
+      tech: ["Typer + Rich", "Run as python -m trustdesk on Windows"], files: ["src/trustdesk/cli.py"],
+      concepts: ["Developer experience"], ask: "Why build a CLI before a UI?" }),
+    C("ui", 5, 132, "Review UI", "Streamlit", 4, {
+      what: "Screen where the analyst sees each draft beside its cited passages and approves it.",
+      tech: ["Streamlit", "Talks only to FastAPI"], files: ["planned: ui/"], concepts: ["UX for trust"], ask: "What must a reviewer see to trust an answer quickly?" }),
+    C("export", 5, 242, "Export + audit", "XLSX, audit log", 4, {
+      what: "Writes approved answers back into the original sheet and records who approved what.", tech: ["openpyxl", "Append-only audit events"],
+      files: ["planned"], concepts: ["Auditability (G2)"], ask: "What fields make an answer reproducible later?" }),
+    C("mcp", 5, 322, "MCP server", "tools for Claude", 6, {
+      what: "Exposes search and drafting as Model Context Protocol tools usable from Claude Desktop.", tech: ["MCP Python SDK, stdio"],
+      files: ["planned"], concepts: ["Tool interoperability"], ask: "Why mark MCP-drafted answers as drafts?" }),
+    B("gateway", 0, "LLM gateway", "Ollama + LiteLLM", 1, {
+      what: "One function for every model call: local Qwen3 via Ollama's native API, API models via LiteLLM.",
+      tech: ["format = JSON schema, think = false", "Integrated Radeon via Vulkan", "$defs inlined for providers"],
+      files: ["src/trustdesk/llm.py", "docs/adr/0001-local-model-and-native-ollama-client.md"],
+      concepts: ["Benchmark before you choose", "Model routing"], ask: "Generation runs at ~5 tok/s. Which design choices follow from that?" }),
+    B("tracing", 1, "Tracing", "OpenTelemetry", 2, {
+      what: "Each answer is one trace: CHAIN span with RETRIEVER and LLM children, with tokens, latency and chunk ids.",
+      tech: ["OpenInference attribute names", "Local JSONL, optional OTLP/HTTP export"],
+      files: ["src/trustdesk/telemetry.py", "docs/adr/0003-tracing-and-eval-without-pandas.md"],
+      concepts: ["Observability", "Vendor-neutral telemetry"], ask: "How does a trace tell retrieval failures from generation failures?" }),
+    B("evals", 2, "Evals", "golden set + judge", 2, {
+      what: "100-question golden set, reference answers, LLM judge and metrics: hit@3, MRR, citation accuracy, abstention, correctness, faithfulness.",
+      tech: ["Gemini Flash-Lite judge, ~1.5k tokens per call", "Retrieval grid with no API calls", "Parse failures = missing", "Cohen's kappa vs human labels"],
+      files: ["src/trustdesk/evals/", "evals/golden/questions.yaml"],
+      concepts: ["Golden sets", "LLM-as-judge", "Cohen's kappa"], ask: "Why can't you trust the judge's scores on their own?" }),
+    B("guardrails", 3, "Guardrails", "PII, injection", 5, {
+      what: "Redacts personal data and blocks instructions hidden in uploaded files or crawled pages.", tech: ["Presidio", "Injection heuristics", "Red-team suite"],
+      files: ["planned: src/trustdesk/guardrails/"], concepts: ["Prompt injection", "Data protection"], ask: "How would an attacker hide instructions in a spreadsheet?" }),
+    B("ci", 4, "CI + tests", "ruff, mypy, pytest", 1, {
+      what: "Every push runs lint, strict type checks and 20 unit tests; an eval gate joins in phase 5.",
+      tech: ["GitHub Actions on Ubuntu", "pre-commit with gitleaks"], files: [".github/workflows/ci.yml", "tests/"],
+      concepts: ["Quality gates"], ask: "What would make a PR fail the future eval gate?" }),
+  ];
+  const byId = Object.fromEntries(COMPONENTS.map(c => [c.id, c]));
+  const EDGES = [["policy","crawler"],["crawler","chunker"],["chunker","chroma"],["chunker","bm25"],["chroma","retriever"],["bm25","retriever"],
+    ["retriever","reranker"],["retriever","drafter"],["reranker","drafter"],["drafter","verifier"],["verifier","review"],["verifier","cli"],
+    ["review","ui"],["review","export"],["questionnaire","parser"],["parser","memory"],["memory","review"],["parser","sqlite"]];
+
+  const FLOWS = {
+    ingest: { label: "Ingest", steps: [
+      ["policy", "Policy pages live under handbook.gitlab.com/handbook/security/. Only that section is in scope."],
+      ["crawler", "The crawler respects robots.txt, waits 1 second between requests, skips IT how-to sections and fetches policy-like URLs first. Each page is saved as Markdown with URL, title, fetch time and content hash."],
+      ["chunker", "Each page is split by headings into ~300-token chunks with 50-token overlap. Every chunk keeps its heading path, such as 'Encryption Policy > Policy > Encryption'."],
+      ["chroma", "Chunks are embedded with bge-small on the CPU and stored in ChromaDB: 150 pages became 1,674 chunks in about 5 minutes."] ] },
+    answer: { label: "Answer a question", steps: [
+      ["cli", "You run: trustdesk ask \"Is customer data encrypted at rest?\" A CHAIN span starts the trace."],
+      ["retriever", "Dense search and BM25 keyword search each return 20 candidates, fused with reciprocal rank fusion. A cross-encoder reranks them and the best 3 go on. Ids and scores are logged on a RETRIEVER span."],
+      ["chroma", "Top hit: Encryption Policy > Encryption, similarity 0.83. Unrelated pages score around 0.70."],
+      ["drafter", "Qwen3 4B gets the chunks, strict grounding rules and a JSON schema. Pydantic validates the reply; an invalid reply gets one repair retry."],
+      ["gateway", "The call goes to Ollama's native API with thinking turned off: about 600 prompt tokens and 100 output tokens, roughly 30 seconds."],
+      ["verifier", "Each quote must appear word for word in a chunk that was actually retrieved. Here the quote 'Customer data is encrypted at rest.' passes."],
+      ["tracing", "The finished trace (answer → retrieve → draft) is written to reports/traces/ and can be exported to Phoenix Cloud or Langfuse."],
+      ["cli", "You see the answer, its verified citation with the source URL, and the timing and token counts."] ] },
+    eval: { label: "Evaluate", steps: [
+      ["evals", "The golden set has 100 questions across 17 control domains. An API model drafts each reference answer; you verify it."],
+      ["retriever", "Each question runs through the real pipeline. Retrieval is scored on its own: is the reference page in the top 3 (hit@3), and how high (MRR)?"],
+      ["drafter", "The drafter answers as usual, in local mode (Qwen3 4B) or API mode for comparison."],
+      ["verifier", "Citation accuracy counts quotes found word for word in their chunk."],
+      ["gateway", "A stronger API model acts as the judge: correctness against the reference, and faithfulness claim by claim against the retrieved context."],
+      ["evals", "Results go to reports/evals/. A 50-row sheet lets you label answers by hand; agreement and Cohen's kappa show whether the judge can be trusted."] ] },
+    target: { label: "Target (phase 4+)", steps: [
+      ["questionnaire", "A sales engineer uploads the customer's spreadsheet."],
+      ["parser", "The Parser agent splits it into typed questions; LangGraph fans out one run per question."],
+      ["memory", "Answer memory checks for a previously approved answer to a similar question."],
+      ["retriever", "Hybrid search: dense vectors plus BM25 keywords, fused with reciprocal rank fusion."],
+      ["reranker", "A cross-encoder reranks candidates; the best 3 reach the drafter."],
+      ["drafter", "The drafter writes a cited answer or abstains."],
+      ["verifier", "An NLI model checks each citation supports its claim; weak answers retry, unsupported ones abstain."],
+      ["review", "The graph pauses with interrupt() until a security analyst approves, edits or rejects."],
+      ["export", "Approved answers are written back to the sheet; every decision lands in the audit log."] ] },
+  };
+
+  const PHASES = [[1,"RAG baseline","Week 1"],[2,"Golden set + evals","Week 2"],[3,"Advanced RAG","Weeks 3–4"],[4,"Multi-agent graph","Week 5"],[5,"Governance + safety","Week 6"],[6,"Extend + showcase","Weeks 7–8"]];
+  const STATUS_LABEL = { built: "Built", in_progress: "In progress", planned: "Planned", done: "Done" };
+
+  // ---------- State ----------
+  const st = { status: {}, phases: {}, metrics: [], updated: "", days: [], selected: "retriever", flow: null, step: 0, day: null, live: "loading", timer: null };
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+  const statusOf = id => st.status[id] || "planned";
+  try { const s = localStorage.getItem("tdmap.sel"); if (s && byId[s]) st.selected = s; } catch (e) {}
+
+  // ---------- Map ----------
+  const SVGNS = "http://www.w3.org/2000/svg";
+  function edgePath(a, b) {
+    if (a.x === b.x) { const x = a.x + W / 2; return `M${x} ${a.y + H}V${b.y}`; }
+    const x1 = a.x + W, y1 = a.y + H / 2, x2 = b.x, y2 = b.y + H / 2, mx = (x1 + x2) / 2;
+    return `M${x1} ${y1}C${mx} ${y1} ${mx} ${y2} ${x2 - 2} ${y2}`;
+  }
+  function renderMap() {
+    const flow = st.flow ? FLOWS[st.flow] : null;
+    const steps = flow ? flow.steps.slice(0, st.step + 1).map(s => s[0]) : [];
+    const current = flow ? flow.steps[st.step][0] : null;
+    const inFlow = new Set(flow ? flow.steps.map(s => s[0]) : []);
+    const dayIds = new Set(!flow && st.day ? (st.days.find(d => d.id === st.day)?.built || []) : []);
+    const hotEdges = new Set();
+    for (let i = 1; i < steps.length; i++) hotEdges.add(steps[i - 1] + ">" + steps[i]);
+    let s = `<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="marker-fill" d="M0 0L10 5L0 10z"/></marker><marker id="ahh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path class="marker-hot" d="M0 0L10 5L0 10z"/></marker></defs>`;
+    LANES.forEach((l, i) => { s += `<text class="lane-label" x="${COL[i]}" y="16">${l}</text>`; });
+    s += `<rect class="band" x="10" y="${392 + Y0}" width="980" height="${H + 24}" rx="8"/><text class="lane-label" x="20" y="${404 + Y0 - 2}">Cross-cutting</text>`;
+    for (const [f, t] of EDGES) {
+      const hot = hotEdges.has(f + ">" + t);
+      s += `<path class="edge${hot ? " hot" : ""}" d="${edgePath(byId[f], byId[t])}" marker-end="url(#${hot ? "ahh" : "ah"})"/>`;
+    }
+    for (const c of COMPONENTS) {
+      const cls = ["node", statusOf(c.id)];
+      if (c.id === st.selected) cls.push("sel");
+      if (flow && !inFlow.has(c.id)) cls.push("dim");
+      if (c.id === current) cls.push("hot");
+      if (dayIds.has(c.id)) cls.push("today");
+      if (!flow && st.day && dayIds.size && !dayIds.has(c.id)) cls.push("dim");
+      s += `<g class="${cls.join(" ")}" data-id="${c.id}" tabindex="0" role="button" aria-label="${esc(c.name)}: ${esc(STATUS_LABEL[statusOf(c.id)])}">
+        <rect x="${c.x}" y="${c.y}" width="${W}" height="${H}" rx="8"/>
+        <text class="t" x="${c.x + 12}" y="${c.y + 21}">${esc(c.name)}</text>
+        <text class="s" x="${c.x + 12}" y="${c.y + 38}">${esc(c.sub)}</text></g>`;
+    }
+    $("map").innerHTML = s;
+    $("todayLegend").hidden = !(st.day && !flow && dayIds.size);
+  }
+  $("map").addEventListener("click", e => { const g = e.target.closest(".node"); if (g) select(g.dataset.id); });
+  $("map").addEventListener("keydown", e => { const g = e.target.closest(".node"); if (g && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); select(g.dataset.id); } });
+  function select(id) { st.selected = id; try { localStorage.setItem("tdmap.sel", id); } catch (e) {} renderMap(); renderInspector(); }
+
+  function renderInspector() {
+    const c = byId[st.selected]; const status = statusOf(c.id);
+    const days = st.days.filter(d => (d.built || []).includes(c.id)).map(d => `Day ${d.day}`);
+    $("inspector").innerHTML = `
+      <div style="display:grid;gap:6px"><span class="eyebrow">${esc(c.band ? "Cross-cutting" : LANES[COL.indexOf(c.x)])} · phase ${c.phase}</span>
+        <h3 style="font-size:20px">${esc(c.name)}</h3>
+        <div><span class="badge ${status}">${esc(STATUS_LABEL[status])}</span>${days.length ? ` <span class="badge">${esc(days.join(", "))}</span>` : ""}</div></div>
+      <p>${esc(c.what)}</p>
+      <div class="kv"><span class="k">How it's built</span><ul>${c.tech.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
+      <div class="kv"><span class="k">Where to look</span><ul>${c.files.map(f => `<li class="mono">${esc(f)}</li>`).join("")}</ul></div>
+      <div class="kv"><span class="k">Concepts</span><div class="tagrow">${c.concepts.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div></div>
+      <div class="kv"><span class="k">Interview question</span><p class="ask">${esc(c.ask)}</p></div>`;
+  }
+
+  // ---------- Flows ----------
+  let playTimer = null;
+  function renderFlowChips() {
+    $("flowchips").innerHTML = Object.entries(FLOWS).map(([k, f]) => `<button class="chip" type="button" data-flow="${k}" aria-pressed="${st.flow === k}">${esc(f.label)}</button>`).join("");
+  }
+  $("flowchips").addEventListener("click", e => { const b = e.target.closest("[data-flow]"); if (b) startFlow(b.dataset.flow); });
+  function startFlow(k) { stopPlay(); st.flow = k; st.step = 0; showStep(); }
+  function showStep() {
+    const f = FLOWS[st.flow]; const [id, text] = f.steps[st.step];
+    st.selected = id;
+    $("flowbar").hidden = false;
+    $("stepn").textContent = `${f.label} · step ${st.step + 1} of ${f.steps.length}`;
+    $("steptext").textContent = text;
+    $("prev").disabled = st.step === 0;
+    $("next").disabled = st.step === f.steps.length - 1;
+    renderFlowChips(); renderMap(); renderInspector();
+  }
+  function stopPlay() { if (playTimer) { clearInterval(playTimer); playTimer = null; $("play").textContent = "Play all"; } }
+  $("prev").onclick = () => { stopPlay(); if (st.step > 0) { st.step--; showStep(); } };
+  $("next").onclick = () => { stopPlay(); const f = FLOWS[st.flow]; if (st.step < f.steps.length - 1) { st.step++; showStep(); } };
+  $("play").onclick = () => {
+    if (playTimer) return stopPlay();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (st.step === FLOWS[st.flow].steps.length - 1) { st.step = 0; showStep(); }
+    $("play").textContent = "Pause";
+    playTimer = setInterval(() => { const f = FLOWS[st.flow]; if (st.step < f.steps.length - 1) { st.step++; showStep(); } else stopPlay(); }, reduce ? 4500 : 3200);
+  };
+  $("stop").onclick = () => { stopPlay(); st.flow = null; $("flowbar").hidden = true; renderFlowChips(); renderMap(); };
+
+  // ---------- Header ----------
+  function renderHeader() {
+    $("phases").innerHTML = PHASES.map(([n, name, when]) => {
+      const s = st.phases[n] || "planned";
+      return `<div class="phase ${s}"><div class="n">Phase ${n} · ${esc(when)}</div><div class="name">${esc(name)}</div><div class="st">${esc(STATUS_LABEL[s] || s)}</div></div>`;
+    }).join("");
+    $("metrics").innerHTML = st.metrics.length ? st.metrics.map(m => `<div class="metric"><b>${esc(m.value)}</b><span>${esc(m.label)}</span></div>`).join("")
+      : `<div class="metric"><span>${st.live === "loading" ? "Loading the latest results…" : "Results appear here after the first logged day."}</span></div>`;
+    const live = $("live");
+    const map = { loading: ["wait", "Loading progress…"], ok: ["ok", `Live · updated ${st.updated || "—"}`], stale: ["wait", "Progress may be out of date"], off: ["", "Live progress is not available in this view"] };
+    const [cls, txt] = map[st.live];
+    live.innerHTML = `<span class="dot ${cls}"></span><span>${esc(txt)}</span>`;
+    $("updated").textContent = st.updated ? `Progress last updated ${st.updated}` : "";
+  }
+
+  // ---------- Days ----------
+  function renderDays() {
+    if (!st.days.length) {
+      $("daylist").innerHTML = "";
+      $("daycard").innerHTML = `<div class="empty">${st.live === "loading" ? "Loading the daily log…" : "No days logged yet. After each work session, Claude adds a day here with what was built, what to look at and what to study."}</div>`;
+      return;
+    }
+    if (!st.day || !st.days.find(d => d.id === st.day)) st.day = st.days[st.days.length - 1].id;
+    $("daylist").innerHTML = st.days.slice().reverse().map(d => `<button class="daybtn" type="button" data-day="${esc(d.id)}" aria-pressed="${d.id === st.day}"><span class="d">Day ${d.day} · ${esc(d.date)}</span><span class="h">${esc(d.headline)}</span></button>`).join("");
+    const d = st.days.find(x => x.id === st.day);
+    const list = a => (a && a.length) ? `<ul class="list">${a.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p class="muted">None.</p>`;
+    $("daycard").innerHTML = `
+      <div style="display:grid;gap:6px"><span class="eyebrow">Day ${d.day} · ${esc(d.date)} · ${esc(d.phase)}</span><h3 style="font-size:20px">${esc(d.headline)}</h3><p class="muted" style="max-width:75ch">${esc(d.summary)}</p>
+        <div class="tagrow">${(d.built || []).map(id => byId[id] ? `<button class="tag" type="button" data-sel="${id}">${esc(byId[id].name)}</button>` : "").join("")}</div></div>
+      <div class="cols">
+        <div style="display:grid;gap:8px"><h3>What got done</h3>${list(d.done)}</div>
+        <div style="display:grid;gap:8px"><h3>Key areas to look at</h3><div class="lookat">${(d.look_at || []).map(l => `<div><b>${esc(l.label)}</b><br><code>${esc(l.path)}</code><br><span class="muted">${esc(l.why)}</span></div>`).join("")}</div></div>
+      </div>
+      ${(d.metrics || []).length ? `<div style="display:grid;gap:8px"><h3>Measured</h3><div style="overflow-x:auto"><table class="mtable"><tbody>${d.metrics.map(m => `<tr><td>${esc(m.label)}</td><td>${esc(m.value)}</td><td class="muted">${esc(m.note || "")}</td></tr>`).join("")}</tbody></table></div></div>` : ""}
+      <div class="cols">
+        <div style="display:grid;gap:8px"><h3>Problems and decisions</h3>${list(d.decisions)}</div>
+        <div style="display:grid;gap:8px"><h3>Blocked on / next</h3>${list([...(d.blockers || []).map(b => "Blocked: " + b), ...(d.next || [])])}</div>
+      </div>`;
+  }
+  $("daylist").addEventListener("click", e => { const b = e.target.closest("[data-day]"); if (b) { st.day = b.dataset.day; renderDays(); renderMap(); renderKit(); } });
+  $("daycard").addEventListener("click", e => { const b = e.target.closest("[data-sel]"); if (b) { select(b.dataset.sel); document.querySelector(".board").scrollIntoView({ behavior: "smooth", block: "start" }); } });
+
+  // ---------- Study kit ----------
+  function renderKit() {
+    const learned = st.days.flatMap(d => (d.learned || []).map(x => ({ ...x, day: d.day })));
+    const quiz = st.days.flatMap(d => (d.quiz || []).map(x => ({ ...x, day: d.day })));
+    $("ccount").textContent = learned.length ? `${learned.length} concepts` : "";
+    $("concepts").innerHTML = learned.length ? learned.map(l => `<div class="concept"><span class="topic">${esc(l.topic)} · day ${l.day}</span><span>${esc(l.point)}</span></div>`).join("")
+      : `<div class="empty">Concepts from each day appear here.</div>`;
+    $("quiz").innerHTML = quiz.length ? quiz.map((q, i) => `<details class="q" id="q${i}"><summary>${esc(q.q)}</summary><p>${esc(q.a)}</p></details>`).join("")
+      : `<div class="empty">Practice questions appear here.</div>`;
+  }
+
+  function renderAll() { renderHeader(); renderFlowChips(); renderMap(); renderInspector(); renderDays(); renderKit(); }
+  renderAll();
+
+  // ---------- Live data ----------
+  const timeout = () => { st.timer = setTimeout(() => { if (st.live === "loading") { st.live = "stale"; renderAll(); } }, 10000); };
+  (async () => {
+    const db = window.claude && window.claude.use ? await window.claude.use("db") : null;
+    if (!db) { st.live = "off"; renderAll(); return; }
+    timeout();
+    let gotMeta = false, gotDays = false;
+    const settle = (snap) => { if (!snap.metadata.fromCache && gotMeta && gotDays) { clearTimeout(st.timer); st.live = "ok"; } };
+    db.doc("meta/status").onSnapshot(snap => {
+      gotMeta = true;
+      const m = snap.exists ? snap.data() : {};
+      st.status = m.components || {}; st.phases = m.phases || {}; st.metrics = m.metrics || []; st.updated = m.updated || "";
+      settle(snap); renderAll();
+    }, () => { clearTimeout(st.timer); st.live = "stale"; renderAll(); });
+    db.collection("days").orderBy("day").onSnapshot(snap => {
+      gotDays = true;
+      st.days = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      settle(snap); renderAll();
+    }, () => { clearTimeout(st.timer); st.live = "stale"; renderAll(); });
+  })();
+})();
+</script>

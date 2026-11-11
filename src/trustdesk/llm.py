@@ -59,6 +59,9 @@ def _ollama(
     )
 
 
+_last_api_call = 0.0  # monotonic time of the last API call, for the free-tier throttle
+
+
 def _litellm(
     model: str, messages: list[dict[str, str]], schema: dict[str, Any], cfg: LlmCfg
 ) -> LlmResult:
@@ -66,21 +69,45 @@ def _litellm(
         import litellm
     except ImportError as exc:  # pragma: no cover - depends on optional extra
         raise SystemExit("API models need the extra: uv sync --extra api") from exc
-    from trustdesk.config import load_env
+    from litellm.exceptions import (
+        APIConnectionError,
+        RateLimitError,
+        ServiceUnavailableError,
+        Timeout,
+    )
+
+    from trustdesk.config import load_env, min_interval, settings
 
     load_env()
     litellm.suppress_debug_info = True
+    global _last_api_call
+    wait = min_interval(model) - (time.monotonic() - _last_api_call)
+    if wait > 0:
+        time.sleep(wait)
     t0 = time.perf_counter()
-    resp = litellm.completion(
-        model=model,
-        messages=messages,
-        temperature=cfg.temperature,
-        response_format={
-            "type": "json_schema",
-            "json_schema": {"name": "answer", "schema": schema},
-        },
-        timeout=cfg.timeout_s,
-    )
+    retries = settings().eval.max_retries
+    for attempt in range(retries + 1):
+        try:
+            _last_api_call = time.monotonic()
+            # Gemini 3+ deprecates sampling parameters; other providers still get temperature.
+            extra: dict[str, Any] = {"max_tokens": settings().eval.max_output_tokens}
+            if not model.startswith("gemini/gemini-3"):
+                extra["temperature"] = cfg.temperature
+            resp = litellm.completion(
+                model=model,
+                messages=messages,
+                **extra,
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {"name": "answer", "schema": schema},
+                },
+                timeout=cfg.timeout_s,
+            )
+            break
+        except (RateLimitError, ServiceUnavailableError, Timeout, APIConnectionError):
+            if attempt == retries:
+                raise
+            time.sleep(min(60.0, 5.0 * 2**attempt))  # 5, 10, 20, 40 s
     usage = getattr(resp, "usage", None)
     return LlmResult(
         content=resp.choices[0].message.content or "",

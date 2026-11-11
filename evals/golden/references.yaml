@@ -1,0 +1,1789 @@
+# Reference answers for the golden set. Drafted by an API model from the GitLab Handbook
+# (CC BY-SA 4.0; quotes are short excerpts with attribution), then checked by a human.
+# Set verified: true after checking an entry; `golden build` never overwrites those.
+references:
+- id: G001
+  question: Are your security controls tested by an internal team on a regular schedule?
+  domain: AA
+  label: answerable
+  reference_answer: Yes, we test our security controls on a regular schedule using the Compliance team.
+    Compliance controls required for external certifications are tested at least annually, and risk-based
+    controls are tested by Security-Compliance on a quarterly basis according to capacity, risk priority,
+    and system criticality or data sensitivity.
+  key_facts:
+  - An assessment schedule is created each year to test and monitor controls, assigned to members of the
+    Compliance team.
+  - Compliance controls are tested at least annually.
+  - Risk-based controls are tested by Security-Compliance on a quarterly basis, with frequency also based
+    on risk.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/
+  supporting_quotes:
+  - Each year, an assessment schedule is created to test and monitor controls, with assessments grouped
+    by quarter and assigned to members of the Compliance team
+  - '* **Compliance controls:** Required for external certifications; tested at least annually'
+  - While the Security-Compliance will perform risk-based control testing on a quarterly basis, the frequency
+    of a particular control’s testing will also be based on risk.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G002
+  question: Do you undergo independent third-party audits such as SOC 2 Type 2?
+  domain: AA
+  label: unanswerable
+  reference_answer: We do not have information in the provided passages about whether we undergo independent
+    third-party audits such as a SOC 2 Type 2 for our own organization, as the policy text only discusses
+    obtaining third-party attestations and SOC reports from vendors and third parties.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G003
+  question: How are audit findings tracked through to remediation?
+  domain: AA
+  label: unanswerable
+  reference_answer: We do not have information in the provided passages about how audit findings are tracked
+    through to remediation.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G004
+  question: Do you map your controls to more than one compliance framework?
+  domain: AA
+  label: answerable
+  reference_answer: Yes, we use a common controls framework called the GitLab Control Framework (GCF)
+    where a single control addresses multiple underlying requirements from various compliance frameworks,
+    such as SOC2, PCI, and ISO, allowing us to collect evidence for a variety of audits at once.
+  key_facts:
+  - We developed a common controls framework called the GitLab Control Framework (GCF).
+  - A single control addresses multiple underlying requirements to collect evidence for a variety of audits
+    at once (such as SOC2, PCI, and ISO).
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/
+  supporting_quotes:
+  - To address this, we developed a common controls framework called the **GitLab Control Framework (GCF)**.
+  - we created a set of security and AI controls that would address multiple underlying requirements with
+    a single control allowing the Security Compliance team to make fewer requests to control owners and
+    efficiently collect all evidence we would need for a variety of audits at once.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G005
+  question: Can customers obtain a copy of your latest audit report, and how?
+  domain: AA
+  label: unanswerable
+  reference_answer: We do not provide information in the policy passages about whether customers can obtain
+    a copy of our latest audit report or how they might do so.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G006
+  question: What was the name of the audit firm that performed your most recent ISO 27001 surveillance
+    audit?
+  domain: AA
+  label: unanswerable
+  reference_answer: We do not provide the name of the audit firm that performed our most recent ISO 27001
+    surveillance audit in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G007
+  question: Do you follow a documented secure software development lifecycle?
+  domain: AIS
+  label: answerable
+  reference_answer: Yes, we outline the general components of our software development lifecycle through
+    our Software Development Lifecycle Standard and Software Development Lifecycle Policy. These apply
+    to anyone developing, reviewing, and merging code at GitLab in support of our production applications.
+  key_facts:
+  - We outline the general components of our software development lifecycle in a standard and policy.
+  - The standard and policy apply to anyone developing, reviewing, and merging code in support of production
+    applications.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/software-development-lifecycle-standard/
+  - https://handbook.gitlab.com/handbook/security/security-and-technology-policies/software-development-lifecycle-policy/
+  supporting_quotes:
+  - This standard outlines the general components of GitLab’s software development lifecycle.
+  - This policy applies to anyone developing, reviewing, and merging code at GitLab in support of GitLab’s
+    production applications.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G008
+  question: Is code reviewed by someone other than the author before it is merged?
+  domain: AIS
+  label: answerable
+  reference_answer: Yes, code review is the process by which one team member assists another in validating
+    that a merge request meets the required standards and goals before merging. Additionally, AppSec reviews
+    finalized merge requests.
+  key_facts:
+  - Code review is the process by which one team member assists another team member in validating a merge
+    request.
+  - The AppSec team reviews finalized merge requests.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/
+  supporting_quotes:
+  - Code review is the process and rules by which one team member is expected to assist another team member
+    in validating that a merge request containing code meets not only this standard, but the stated goal
+    of the MR and related issues.
+  - Second, the AppSec team reviews the finalized merge request.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G009
+  question: Do you run automated security scanning (SAST, dependency scanning) on your code?
+  domain: AIS
+  label: answerable
+  reference_answer: Yes, we run automated security scanning on our code. Our projects must have appropriate
+    security scanning enabled, such as enabling SAST Scanning for Go, Ruby, and general source code projects,
+    and enabling Dependency Scanning for all projects.
+  key_facts:
+  - Our projects must have appropriate security scanning enabled.
+  - For Go, Ruby and general source code projects, we must enable SAST Scanning.
+  - For all projects, we must enable Dependency Scanning.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/
+  supporting_quotes:
+  - Our projects must have appropriate security scanning enabled.
+  - For Go, Ruby and general source code projects, we must enable [SAST Scanning]
+  - For all projects, we must enable [Dependency Scanning]
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G010
+  question: Do developers receive secure coding training?
+  domain: AIS
+  label: answerable
+  reference_answer: Yes, we prioritize secure coding training for our developers and other team members
+    who write code. The Secure Coding Training is a required training completed by a sub-group of team
+    members and contractors in the Engineering Department, as well as active team members and contractors
+    across other departments whose roles include writing code.
+  key_facts:
+  - Training of our developers is a high priority item.
+  - The GitLab Secure Coding Training is a required training completed by a sub-group of GitLab Team Members
+    and contractors/TSPs in the Engineering Department.
+  - A Secure Coding training module must also be completed by 100% of all active GitLab team members +
+    contractors/TSPs who write code as part of their role.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/
+  - https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/
+  - https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/
+  supporting_quotes:
+  - training of our developers is a high priority item
+  - The GitLab Secure Coding Training is a required training completed by a sub-group of GitLab Team Members
+    and contractors/TSPs in the Engineering Department.
+  - additional Secure Coding training module must also be completed by 100% of all active GitLab team
+    members + contractors/TSPs.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G011
+  question: How are third-party open source dependencies vetted for vulnerabilities?
+  domain: AIS
+  label: unanswerable
+  reference_answer: We do not provide details in the provided policy passages on how third-party open
+    source dependencies are vetted for vulnerabilities, though the policy does discuss using the latest
+    stable and available versions, ensuring teams can support and upgrade libraries, and verifying that
+    maintainers have a security policy.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G012
+  question: Are application security reviews performed for new features with security impact?
+  domain: AIS
+  label: answerable
+  reference_answer: Yes, we ideally provide some threat modeling for all new features, with in-depth code
+    review and dynamic testing performed based on the risk profile. These reviews help us proactively
+    discover and mitigate vulnerabilities, and if done for new features, we might catch vulnerabilities
+    before they make it into a release.
+  key_facts:
+  - Ideally, all new features would receive some threat modeling.
+  - In-depth code review and dynamic testing are performed based on the risk profile.
+  - Reviews for new features help catch vulnerabilities before they make it into a release.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/
+  supporting_quotes:
+  - Ideally, all new features would receive some threat modeling, with the latter two stages being performed
+    based on the risk profile.
+  - if the review is done for new features, we might catch the vulnerabilities even before they make it
+    into a release.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G013
+  question: Do you have a business continuity plan?
+  domain: BCR
+  label: answerable
+  reference_answer: Yes, we maintain a business continuity plan to guide personnel in procedures protecting
+    against disruptions from unexpected events. Additionally, tabletop exercises for this plan are completed
+    on an annual basis.
+  key_facts:
+  - A business continuity plan is in place to guide personnel in procedures to protect against disruptions
+    caused by an unexpected event.
+  - Tabletop exercises are completed on an annual basis.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  supporting_quotes:
+  - A business continuity plan is in place to guide personnel in procedures to protect against disruptions
+    caused by an unexpected event.
+  - Tabletop exercises are completed on an annual basis.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G014
+  question: Do you maintain an information system contingency plan for critical systems?
+  domain: BCR
+  label: answerable
+  reference_answer: Yes, we develop contingency plans for GitLab.com and Tier 1 systems to meet the needs
+    of critical system operations during a disruption. These procedures are documented in a formal contingency
+    plan maintained by the ISCP Coordinator, reviewed and updated annually, and tested yearly for recovery
+    capabilities and personnel readiness.
+  key_facts:
+  - We develop contingency plans for GitLab.com and Tier 1 systems for critical system operations.
+  - Procedures are documented in a formal contingency plan by the ISCP Coordinator.
+  - The plan is reviewed annually and updated as necessary.
+  - The plan recovery capabilities and personnel are tested annually.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/information-system-contingency-plan-iscp/
+  supporting_quotes:
+  - GitLab will develop contingency plans for GitLab.com and Tier 1 systems to meet the needs of critical
+    system operations in the event of a disruption.
+  - The procedures for execution of such a capability shall be documented in a formal contingency plan
+    by the Information Systems Contingency Plan (ISCP) Coordinator and must be reviewed annually and updated
+    as necessary by the ISCP Coordinator.
+  - The plan recovery capabilities and personnel shall be tested annually to identify weaknesses of the
+    capability.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G015
+  question: How often is your business continuity or disaster recovery plan tested?
+  domain: BCR
+  label: answerable
+  reference_answer: We maintain a business continuity plan to guide personnel in procedures to protect
+    against disruptions caused by unexpected events, and we complete tabletop exercises on an annual basis.
+  key_facts:
+  - A business continuity plan is in place to guide personnel in procedures to protect against disruptions
+    caused by an unexpected event.
+  - Tabletop exercises are completed on an annual basis.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  supporting_quotes:
+  - A business continuity plan is in place to guide personnel in procedures to protect against disruptions
+    caused by an unexpected event.
+  - Tabletop exercises are completed on an annual basis.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G016
+  question: Have you performed a business impact analysis to identify critical systems?
+  domain: BCR
+  label: answerable
+  reference_answer: Yes, we utilize a Business Impact Analysis (BIA) procedure that enables the designation
+    of a Critical System Tier for systems. This BIA process helps determine the systems critical to serving
+    our customers and aids in identifying system criticality and prioritization of restoration efforts.
+  key_facts:
+  - We have a Business Impact Analysis (BIA) procedure.
+  - The BIA enables the designation of a Critical System Tier for systems.
+  - The BIA helps determine the systems critical to serving customers.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/critical-systems/
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/business-impact-analysis/
+  supporting_quotes:
+  - GitLab’s Business Impact Analysis (BIA) procedure enables the designation of a Critical System Tier
+    for a new system by the Security Risk Team.
+  - The Business Impact Analysis (BIA) helps determine the systems critical to serving GitLab’s Customers.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G017
+  question: What are your contractual RTO and RPO commitments for each customer tier?
+  domain: BCR
+  label: unanswerable
+  reference_answer: We do not provide information regarding contractual RTO and RPO commitments for each
+    customer tier in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G018
+  question: Are backups of production data performed and protected?
+  domain: BCR
+  label: partial
+  reference_answer: We maintain production backups and production backup tests with defined retention
+    and disposal requirements, but the provided policies do not detail how they are performed or protected
+    overall.
+  key_facts:
+  - Production backups have organizationally-defined retention and GCP/AWS Secure Deletion disposal requirements.
+  - Production backup tests have a 1-year retention requirement and GCP/AWS Secure Deletion disposal requirements.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/
+  supporting_quotes:
+  - Production backups | Organizationally-defined | [GCP/AWS Secure Deletion]
+  - Production backup tests | 1 year | [GCP/AWS Secure Deletion]
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G019
+  question: Do changes to production require review and approval before deployment?
+  domain: CCC
+  label: unanswerable
+  reference_answer: We do not provide information in the policy passages about whether changes to production
+    generally require review and approval before deployment.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G020
+  question: Do you maintain security baselines or hardening standards for your systems?
+  domain: CCC
+  label: answerable
+  reference_answer: Yes, we use infrastructure management and configuration management tools for security
+    hardening and to ensure baseline configuration standards are established for production servers.
+  key_facts:
+  - Infrastructure management and configuration management tools are used for security hardening
+  - Baseline configuration standards have been established for production servers
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  supporting_quotes:
+  - Infrastructure management and configuration management tools are used for security hardening and to
+    ensure baseline configuration standards have been established for production servers.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G021
+  question: Are emergency changes documented and reviewed after the fact?
+  domain: CCC
+  label: unanswerable
+  reference_answer: We do not have information in the provided policy passages regarding whether emergency
+    changes are documented and reviewed after the fact.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G022
+  question: Do you require baseline security settings for code repositories and projects?
+  domain: CCC
+  label: answerable
+  reference_answer: Yes, we outline baseline configurations that must be set up for GitLab projects impacting
+    the GitLab codebase. These baseline project configurations are required on projects defined in scope
+    or otherwise deemed critical for another communicated reason, rather than on all projects.
+  key_facts:
+  - We outline baseline configurations that must be set up for GitLab projects which impact the GitLab
+    codebase.
+  - These baseline project configurations are not required on all projects, only those defined in scope
+    or otherwise deemed critical.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/
+  supporting_quotes:
+  - The hb page outlines baseline configurations that must be set up for GitLab projects which impact
+    the GitLab codebase.
+  - it is important to understand that these baseline project configurations are not required on all projects,
+    only those projects defined in Scope
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G023
+  question: Is infrastructure managed as code with version control?
+  domain: CCC
+  label: partial
+  reference_answer: We manage infrastructure as Infrastructure as Code to make it easier to update and
+    rebuild infrastructure, and to facilitate the review of changes. However, the provided policy passages
+    do not explicitly state whether version control is used in conjunction with this infrastructure as
+    code management.
+  key_facts:
+  - We manage infrastructure as Infrastructure as Code to make it easier to update and rebuild infrastructure,
+    and to facilitate review of changes.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/
+  supporting_quotes:
+  - Managing infrastructure as Infrastructure as Code, to make easier to update and rebuild infrastructure,
+    as well as facilitating review of changes
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G024
+  question: How many production changes did you deploy last quarter?
+  domain: CCC
+  label: unanswerable
+  reference_answer: We do not have information on how many production changes were deployed last quarter
+    in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G025
+  question: Is customer data encrypted at rest?
+  domain: CEK
+  label: answerable
+  reference_answer: Yes, we ensure that customer data is encrypted at rest. This encryption is performed
+    in accordance with our Encryption Standard and Cryptographic Standard.
+  key_facts:
+  - Customer data is encrypted at rest.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/
+  supporting_quotes:
+  - Customer data is encrypted at rest.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G026
+  question: Which TLS versions do you allow for data in transit?
+  domain: CEK
+  label: answerable
+  reference_answer: We require TLS 1.3 to be enabled and preferred in all new deployments. We allow TLS
+    1.2 to remain enabled for legacy interoperability, provided it is not the only supported version.
+    We do not allow TLS 1.0 and 1.1.
+  key_facts:
+  - TLS 1.3 must be enabled and preferred in all new deployments.
+  - TLS 1.2 may remain enabled for legacy interoperability but must not be the only supported TLS version.
+  - TLS 1.0 and 1.1 are not allowed.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/
+  supporting_quotes:
+  - TLS 1.3 must be enabled and preferred in all new deployments.
+  - TLS 1.2 MAY remain enabled for legacy interoperability but MUST NOT be the only supported TLS version.
+  - TLS 1.0 and 1.1 are not allowed, despite being FIPS 140-2 compliant.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G027
+  question: Do you have a cryptographic standard that lists approved algorithms?
+  domain: CEK
+  label: answerable
+  reference_answer: Yes, we maintain a Cryptography Standard that defines approved cryptographic algorithms,
+    settings, and cryptographic modules for encrypting data at rest or in transit. This standard outlines
+    cryptographic choices, including algorithms and associated settings, and applies to our code as well
+    as infrastructure configuration.
+  key_facts:
+  - The Cryptography Standard defines approved cryptographic algorithms, settings, and cryptographic modules.
+  - It covers data at rest or in transit encryption within systems and subsystems used by the product.
+  - It applies to code as well as infrastructure configuration.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/
+  supporting_quotes:
+  - The Cryptography Standard defines approved cryptographic algorithms, settings, and cryptographic modules
+    for the purposes of encrypting data at rest or in transit
+  - It outlined cryptographic choices, including algorithms as well as important settings that may be
+    associated with the algorithms. It applies to GitLab code and well as infrastructure configuration.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G028
+  question: How are encryption keys managed and rotated?
+  domain: CEK
+  label: unanswerable
+  reference_answer: The provided passages do not contain information on how encryption keys are managed
+    and rotated.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G029
+  question: Is the use of weak or deprecated cryptographic algorithms prohibited?
+  domain: CEK
+  label: unanswerable
+  reference_answer: We do not find information in the provided policies regarding whether the use of weak
+    or deprecated cryptographic algorithms is prohibited.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G030
+  question: How are API tokens and access tokens managed and expired?
+  domain: CEK
+  label: partial
+  reference_answer: We manage personal access tokens by setting their expiration date for a maximum of
+    365 days in the future, while legacy PATs default to expiring in 30 days. When creating or rotating
+    tokens, we configure their permissions and ensure that we revoke or deactivate old tokens. Additionally,
+    we ensure that the lifecycle of a token, including creation, attributes, usage, and deletion, is logged
+    for auditing purposes while keeping the token value masked.
+  key_facts:
+  - For fine-grained PATs or gPATs, the maximum expiration is set for 365 days in the future.
+  - Legacy PATs default to expire in 30 days.
+  - The lifecycle of a token must be logged for auditing purposes.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/rotate-service-account-personal-access-tokens/
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/
+  supporting_quotes:
+  - For `Expiration Date` set it for 365 days in the future (the maximum expiration). If you do not set
+    it, it is default to expire in 30 days for legacy PATs (gPATs default to 365).
+  - The lifecycle of a token (creation, attributes, usage, and deletion) must be logged for auditing purposes.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G031
+  question: Do you have a physical security standard for company-owned assets?
+  domain: DCS
+  label: answerable
+  reference_answer: Yes, we define asset management measures and requirements to support the protection
+    of information assets in our all-remote environment through our Physical Security Standard for Company
+    Assets. These measures and requirements are designed to create a secure infrastructure, work environment,
+    and protect sensitive information from physical threats.
+  key_facts:
+  - We have a Physical Security Standard for Company Assets that defines asset management measures and
+    requirements.
+  - The standard supports the protection of information assets in our all-remote environment.
+  - The measures and requirements are designed to create a secure infrastructure and work environment
+    while protecting sensitive information from physical threats.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/
+  supporting_quotes:
+  - This document defines asset management measures and requirements to support the protection of information
+    assets in GitLab’s all remote environment.
+  - The measures and requirements noted within the standard are designed to create a secure infrastructure,
+    work environment, and protect sensitive information from physical threats.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G032
+  question: Are your production systems hosted with a cloud provider that is independently audited for
+    physical security?
+  domain: DCS
+  label: answerable
+  reference_answer: Yes, our SaaS production infrastructure is hosted and physically secured by third-party
+    service providers. Adherence to physical security requirements is reviewed annually as part of the
+    Third Party Risk Management and Complementary User Entity Controls reviews, which includes confirmation
+    that independent third parties attest to effective physical security procedures such as visitor management,
+    premises protection, environmental securities, and access management.
+  key_facts:
+  - Production infrastructure for SaaS products is hosted and physically secured by third party service
+    providers.
+  - Adherence to physical security requirements is reviewed annually via TPRM and CUEC reviews.
+  - Reviews include confirmation that independent third parties attest to effective physical security
+    procedures like visitor management, premises protection, environmental securities, and access management.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/
+  supporting_quotes:
+  - Hosted and physically secured by third party service provider(s)
+  - Adherence to physical security requirements reviewed annually as part of the Third Party Risk Management
+    (TPRM) review and Complementary User Entity Controls (CUEC) review.
+  - 'This includes confirmation that independent third parties attest to effective physical security procedures
+    including but not limited to: + Visitor Management + Premises Protection + Environmental Securities
+    + Access Management'
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G033
+  question: How many security guards are on site at your primary data center overnight?
+  domain: DCS
+  label: unanswerable
+  reference_answer: We do not have information in the provided policy passages regarding the number of
+    security guards on site at our primary data center overnight.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G034
+  question: What protections are required for laptops and other company devices when traveling?
+  domain: DCS
+  label: answerable
+  reference_answer: When traveling, we must secure our data by ensuring we are in a secure place where
+    no one can hear us when talking about restricted data, and by locking our device when it is not in
+    use. Additionally, we must not bring company-owned devices to embargoed countries without consulting
+    the Legal Department.
+  key_facts:
+  - Secure your data during travel by being in a secure place where no-one can hear you when talking about
+    restricted data
+  - Lock your device when it is not in use during travel
+  - Do not bring company-owned devices to embargoed countries without consulting the Legal Department
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/
+  supporting_quotes:
+  - Secure your data during travel [...] ensuring that you are in a secure place and no-one can hear you
+    when you are talking about restricted data, and locking your device when it is not in use.
+  - Do not bring company-owned devices to embargoed countries without consulting the Legal Department.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G035
+  question: What fire suppression system is installed in your server rooms?
+  domain: DCS
+  label: unanswerable
+  reference_answer: We do not provide information about the fire suppression systems installed in our
+    server rooms in our provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G036
+  question: Do you classify data by sensitivity, and what are the classification levels?
+  domain: DSP
+  label: partial
+  reference_answer: We classify data according to our Data Classification Standard and expect Data Owners
+    to determine the classification of data. While the standard mentions handling data according to classification
+    levels and references a Data Classification Index, the provided context does not explicitly list the
+    specific classification levels.
+  key_facts:
+  - Data Owners shall determine the classification of data in accordance with this standard.
+  - The Data Classification Index provides a list of various types of data and their classification level.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/
+  supporting_quotes:
+  - Data Owners shall determine the classification of data in accordance with this standard.
+  - The Data Classification Index (internal only) provides a list of various types of data and their classification
+    level.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G037
+  question: Do you have a records retention and deletion policy?
+  domain: DSP
+  label: answerable
+  reference_answer: Yes, we have a Records Retention & Disposal policy that specifies retention and disposal
+    requirements for various types of records, such as business continuity plans, production backups,
+    and audit logs. Exceptions to these requirements are tracked as per the Information Security Policy
+    Exception Management Process.
+  key_facts:
+  - We maintain a Records Retention & Disposal policy.
+  - The policy outlines specific retention and disposal requirements for various records.
+  - Exceptions to the requirements are tracked per the Information Security Policy Exception Management
+    Process.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/
+  supporting_quotes:
+  - Records Retention & Disposal
+  - Records Retention & Disposal > Retention & Disposal Requirements Procedure
+  - Exceptions to these requirements will be tracked as per the Information Security Policy Exception
+    Management Process
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G038
+  question: How is customer data securely disposed of when no longer needed?
+  domain: DSP
+  label: unanswerable
+  reference_answer: We do not have information in the provided policy passages explaining how customer
+    data is securely disposed of when no longer needed.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G039
+  question: Are there handling requirements for the most sensitive class of data?
+  domain: DSP
+  label: partial
+  reference_answer: We note that our most sensitive data must remain confidential, and access to it is
+    considered privileged and requires explicit approval. However, the provided context only partially
+    outlines handling requirements for this data level, such as restrictions on transmitting Red data
+    without prior approval from the Privacy and Security teams and vendor processing requirements.
+  key_facts:
+  - Access to GitLab's most sensitive data should be considered privileged and must be explicitly approved.
+  - Red Data including Regulated Data may not be transmitted from an approved Red data source to any other
+    systems or solutions without first obtaining approval from the Privacy and Security teams.
+  - Vendors that process Red Data must first undergo a factual and legal analysis that justifies their
+    processing.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/
+  supporting_quotes:
+  - This is GitLab’s most sensitive data and access to it should be considered privileged and must be
+    explicitly approved.
+  - Red Data including Regulated Data may not be transmitted from an approved Red data source to any other
+    systems or solutions without first obtaining approval from the Privacy and Security teams.
+  - Any Vendors that process Red Data must first undergo a factual and legal analysis that justifies their
+    processing
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G040
+  question: Is access to customer data limited to staff who need it for their job?
+  domain: DSP
+  label: unanswerable
+  reference_answer: We do not have information in the provided policies regarding whether access to customer
+    data is limited to staff who need it for their job.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G041
+  question: In which specific countries are customer backups physically stored?
+  domain: DSP
+  label: unanswerable
+  reference_answer: The provided policies do not cover the specific countries where customer backups are
+    physically stored.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G042
+  question: Is there a formal process for creating, approving and reviewing security policies?
+  domain: GRC
+  label: answerable
+  reference_answer: Yes, we require that all in-scope policies be reviewed and approved by appropriate
+    stakeholders prior to merging the initial merge request to create the policy. Additionally, all in-scope
+    policies must be reviewed and approved by appropriate stakeholders at least annually in coordination
+    with the Controlled Document Procedure annual review.
+  key_facts:
+  - In-scope policies must be reviewed and approved by appropriate stakeholders prior to merging the initial
+    MR to create the policy.
+  - In-scope policies must be reviewed and approved by appropriate stakeholders on at least an annual
+    basis in coordination with the Controlled Document Procedure annual review.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-and-technology-policies/security-and-technology-policies-management/
+  supporting_quotes:
+  - All in-scope policies must be reviewed and approved by appropriate stakeholders prior to merging the
+    initial MR to create the policy.
+  - All in-scope policies must be reviewed and approved by appropriate stakeholders on at least an annual
+    basis in coordination with the [Controlled Document Procedure](https://handbook.gitlab.com/handbook/security/controlled-document-procedure/)
+    annual review.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G043
+  question: How often are security policies reviewed?
+  domain: GRC
+  label: answerable
+  reference_answer: We review and approve all in-scope policies on at least an annual basis in coordination
+    with the Controlled Document Procedure annual review.
+  key_facts:
+  - All in-scope policies must be reviewed and approved on at least an annual basis.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-and-technology-policies/security-and-technology-policies-management/
+  supporting_quotes:
+  - All in-scope policies must be reviewed and approved by appropriate stakeholders on at least an annual
+    basis
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G044
+  question: Do you have a security risk management program?
+  domain: GRC
+  label: answerable
+  reference_answer: Yes, we maintain security risk management programs including the Security and Technology
+    Operational Risk Management (STORM) program, AI Risk Management, and the Unified Security Risk Management
+    (USRM) program. These programs drive the identification, assessment, continuous monitoring, and reporting
+    of security and technology risks across the organization.
+  key_facts:
+  - We have a Security and Technology Operational Risk Management (STORM) program.
+  - We have an AI Risk Management program supporting our ISO42001 certification.
+  - We have a Unified Security Risk Management (USRM) program.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/
+  supporting_quotes:
+  - The Security Risk team provides risk management services including [Security and Technology Operational
+    Risk Management (STORM)](https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/),
+    AI Risk Management supporting our ISO42001 certification, and [Unified Security Risk Management (USRM)](https://handbook.gitlab.com/handbook/security/security-observations-risk-management/).
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G045
+  question: Is there a process to request and approve exceptions to security policies?
+  domain: GRC
+  label: answerable
+  reference_answer: Yes, we have a process for requesting and approving security policy exceptions. Requesters
+    must submit an Exception Request to the Security Assurance Department, tag the appropriate individuals
+    for approval based on the approval matrix, and ensure the request is tracked and approved in an auditable
+    format.
+  key_facts:
+  - Exceptions to security policies must be tracked and approved by policy approvers via an auditable
+    format.
+  - Requesters must submit an Exception Request to the Security Assurance Department.
+  - The requester should tag the appropriate individuals required to provide approval per the approval
+    matrix.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-and-technology-policy-exception/
+  supporting_quotes:
+  - Exceptions to Security and Technology Policies must be tracked and approved by the policy approver(s)
+    via an auditable format.
+  - the requester must submit an Exception Request to the Security Assurance Department
+  - The requester should tag the appropriate individuals who are required to provide an approval per the
+    approval matrix.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G046
+  question: Do you operate an information security management system aligned with ISO 27001?
+  domain: GRC
+  label: answerable
+  reference_answer: We have adopted the ISO/IEC 27001:2022 standard for our information security management
+    system (ISMS) to provide assurance on the robustness of our information security policies, standards,
+    and procedures, and the strength of our control environment.
+  key_facts:
+  - We have adopted the ISO/IEC 27001:2022 standard for our information security management system (ISMS).
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/isms/
+  supporting_quotes:
+  - GitLab has adopted the ISO/IEC 27001:2022 standard for our information security management system
+    (ISMS)
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G047
+  question: How are identified security risks tracked and treated?
+  domain: GRC
+  label: partial
+  reference_answer: We track and treat identified security risks through various processes, such as discussing
+    ad-hoc identified security risks with the Security Risk Team to assign an inherent risk score, performing
+    qualitative analysis, and determining whether to escalate them to the risk register. Additionally,
+    for validated security items, we ensure that a treatment plan or risk acceptance, a due date for follow-up
+    or remediation testing, required labels, monitoring, and mapping to a related risk issue are in place.
+  key_facts:
+  - All security and technology operational risks identified ad-hoc are discussed with the Security Risk
+    Team, assigned an inherent risk score, and analyzed to determine escalation to the risk register.
+  - Security validates that a treatment plan or risk acceptance, remediation testing due date, required
+    labels, monitoring, and mapping to a related risk issue are in place.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/
+  - https://handbook.gitlab.com/handbook/security/security-observations-risk-management/
+  supporting_quotes:
+  - All security and technology operational risks identified ad-hoc are discussed with the Security Risk
+    Team, an inherent risk score is assigned, and a qualitative analysis done to determine if it should
+    be escalated to the risk register.
+  - 'Security will validate that the following is in place: * Treatment plan or risk acceptance * Due
+    date for follow-up/remediation testing * Required labels * Monitoring in place * Finding is mapped
+    to related risk issue'
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G048
+  question: Do all employees complete security awareness training?
+  domain: HRS
+  label: answerable
+  reference_answer: Yes, we require all team members to complete security awareness training upon hire
+    and annually thereafter. We are required to reach 100% participation for regulatory purposes, and
+    team members who fail to complete it within the required timeframe may have their access disabled.
+  key_facts:
+  - GitLab team members complete security awareness training upon hire and annually thereafter.
+  - We are required to reach 100% participation for regulatory purposes.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  - https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/
+  supporting_quotes:
+  - GitLab team members complete security awareness training upon hire and annually thereafter.
+  - We are required to reach 100% participation for regulatory purposes.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G049
+  question: How often must security awareness training be repeated?
+  domain: HRS
+  label: partial
+  reference_answer: We require annual security awareness training as part of our compliance requirements,
+    alongside new hire security awareness training. However, the provided policy passages do not explicitly
+    specify the exact frequency or how often the training must be repeated beyond mentioning that it is
+    an annual requirement and that team members hired after May 1 take it the following year.
+  key_facts:
+  - Security awareness training includes new hire and annual security awareness training.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/
+  supporting_quotes:
+  - The successful completion of new hire and annual security awareness training is a compliance requirement
+    for GitLab, Inc.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G050
+  question: Do employees acknowledge security policies or an acceptable use policy?
+  domain: HRS
+  label: unanswerable
+  reference_answer: We do not have information in the provided passages about whether employees acknowledge
+    security policies or an acceptable use policy.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G051
+  question: Are background checks performed on new hires?
+  domain: HRS
+  label: answerable
+  reference_answer: Yes, we require new hires to pass a background check as a condition of their employment.
+  key_facts:
+  - New hires are required to pass a background check as a condition of their employment.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  supporting_quotes:
+  - GitLab new hires are required to pass a background check as a condition of their employment.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G052
+  question: What happens if an employee does not complete required security training on time?
+  domain: HRS
+  label: answerable
+  reference_answer: If an employee does not complete the required security training on time, Security
+    Governance sends weekly reminder notifications. If required, we communicate incomplete training to
+    managers for assistance and escalate to VPs. Additionally, team members may have their access disabled
+    until the training is completed, and further penalties may be incurred on a case-by-case basis.
+  key_facts:
+  - Security Governance sends weekly reminder notifications requesting completion.
+  - Incomplete assigned trainings are communicated to managers for assistance and escalations to VPs if
+    required.
+  - Team members may have repercussions of their access being disabled until training has been completed.
+  - Further penalties may be incurred on a case by case basis.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/
+  supporting_quotes:
+  - Security Governance will send weekly reminder notifications requesting completion of the training.
+  - we will communicate incomplete assigned trainings to managers for assistance with completion and escalations
+    to VPs if required.
+  - Team members that do not complete training within the required timeframe (minus exceptions) may have
+    repercussions of their access being disabled until training has been completed.
+  - Further penalties may be incurred on a case by case basis.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G053
+  question: What percentage of employees completed security training last year?
+  domain: HRS
+  label: unanswerable
+  reference_answer: We do not provide the percentage of employees who actually completed security training
+    last year in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G054
+  question: Is multi-factor authentication required for access to company systems?
+  domain: IAM
+  label: answerable
+  reference_answer: Yes, we require all team members to use Multi-Factor Authentication (MFA). Furthermore,
+    its usage is specifically required for accessing the production environment.
+  key_facts:
+  - All GitLab team members are required to use Multi-Factor Authentication (MFA).
+  - Usage of MFA by GitLab team members is required for access to the production environment.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/password-standard/
+  supporting_quotes:
+  - All GitLab team members are required to use [Multi-Factor Authentication](https://www.cisa.gov/resources-tools/resources/multi-factor-authentication-mfa)
+    (MFA).
+  - Usage of MFA by GitLab team members is **required** for access to the production environment.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G055
+  question: How often are user access rights reviewed?
+  domain: IAM
+  label: unanswerable
+  reference_answer: We do not specify how often user access rights are reviewed, though we note that reviews
+    must be completed within one month and initiated within a quarter.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G056
+  question: Do you have password requirements such as length and use of a password manager?
+  domain: IAM
+  label: answerable
+  reference_answer: Yes, we require a minimum password length of 12 characters for systems where a password
+    can be configured, and special characters are not required or recommended. We also require the use
+    of 1Password as a password manager for your Okta password and other passwords that you won't store
+    in Okta.
+  key_facts:
+  - Minimum password length is set to 12 characters.
+  - Special characters are not required or recommended.
+  - Use 1Password as a password manager for your Okta password and other passwords not stored in Okta.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/password-standard/
+  - https://handbook.gitlab.com/handbook/security/password-guidelines/
+  supporting_quotes:
+  - minimum password length needs to be set to 12 characters
+  - The use of special characters is not required or even recommended.
+  - use 1Password as your password manager and set a strong and unique master password.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G057
+  question: Is access granted based on least privilege and job role?
+  domain: IAM
+  label: answerable
+  reference_answer: Yes, we assign role-based access privileges utilizing predefined security groups,
+    and administrator access to production systems is granted based on job roles and responsibilities.
+    Additionally, our security architecture principles require us to give only the minimum level of access
+    rights necessary to complete an assigned operation.
+  key_facts:
+  - Predefined security groups are utilized to assign role-based access privileges.
+  - Administrator access to the production systems is granted based on job roles and responsibilities.
+  - We give only the minimum level of access rights that is necessary to a user or service to complete
+    an assigned operation.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/
+  supporting_quotes:
+  - Predefined security groups are utilized to assign role-based access privileges and segregate access
+    to data to the production systems.
+  - Administrator access to the production systems is granted based on job roles and responsibilities
+    and limited to authorized personnel.
+  - Give only the minimum level of access rights (privileges) that is necessary to a user or service to
+    complete an assigned operation.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G058
+  question: How is access removed when an employee leaves?
+  domain: IAM
+  label: answerable
+  reference_answer: We deprovision access upon cessation of employment. For terminated users, we correlate
+    current system access listings against a list of active team members derived from Workday using the
+    User Access Review tool Lumos. If any users are found to have active system access but are not current
+    team members, we open access removal issues to start the de-provisioning process.
+  key_facts:
+  - Access is deprovisioned upon cessation of employment.
+  - System access listings are correlated against active team members from Workday using Lumos.
+  - Access removal issues are opened if users have active system access but are not current team members.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/
+  supporting_quotes:
+  - Access is deprovisioned upon cessation of employment.
+  - The current access listings of systems is correlated against a list of active team members derived
+    from Workday (GitLab’s source of truth for employment status) using GitLab’s User Access Review tool
+    Lumos.
+  - If any users are found to have active system access that are not current GitLab team members, open
+    access removal issues to start the access de-provisioning process.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G059
+  question: How is privileged or administrative access controlled?
+  domain: IAM
+  label: answerable
+  reference_answer: We control administrative access to production systems by granting it based on job
+    roles and responsibilities to authorized personnel only. We also assign role-based access privileges
+    and segregate access to data using predefined security groups.
+  key_facts:
+  - Administrator access to the production systems is granted based on job roles and responsibilities
+    and limited to authorized personnel.
+  - Predefined security groups are utilized to assign role-based access privileges and segregate access
+    to data to the production systems.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  supporting_quotes:
+  - Administrator access to the production systems is granted based on job roles and responsibilities
+    and limited to authorized personnel.
+  - Predefined security groups are utilized to assign role-based access privileges and segregate access
+    to data to the production systems.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G060
+  question: Do you use single sign-on for employee access to applications?
+  domain: IAM
+  label: unanswerable
+  reference_answer: We cannot answer whether we use single sign-on for employee access to applications
+    based on the provided policy passages, as the context does not address single sign-on usage.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G061
+  question: In what formats can customers export all of their data when they leave the service?
+  domain: IPY
+  label: unanswerable
+  reference_answer: We do not provide information in the policy passages about the formats in which customers
+    can export all of their data when they leave the service.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G062
+  question: Do you charge a fee for bulk data export at contract termination?
+  domain: IPY
+  label: unanswerable
+  reference_answer: We do not provide information about whether we charge a fee for bulk data export at
+    contract termination in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G063
+  question: Which open standards do your APIs follow for identity federation with customer systems?
+  domain: IPY
+  label: unanswerable
+  reference_answer: We do not provide information about open standards followed by our APIs for identity
+    federation with customer systems in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G064
+  question: Are production networks segmented or isolated from corporate networks?
+  domain: IVS
+  label: unanswerable
+  reference_answer: We cannot answer whether production networks are segmented or isolated from corporate
+    networks because the provided passages do not contain information addressing network architecture,
+    segmentation, or the relationship between production and corporate networks.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G065
+  question: Do you use a zero trust approach to network access?
+  domain: IVS
+  label: answerable
+  reference_answer: Yes, we are implementing Zero Trust, which is the practice of shifting access control
+    from the organization's perimeter to individuals, assets, and endpoints. For us, this means all devices
+    trying to access an endpoint or asset within our environment must authenticate and be authorized based
+    on dynamic, risk-based decisions.
+  key_facts:
+  - GitLab is implementing Zero Trust as the practice of shifting access control from the perimeter to
+    individuals, assets, and endpoints.
+  - Zero Trust means all devices trying to access an endpoint or asset within the environment must authenticate
+    and be authorized.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/
+  supporting_quotes:
+  - GitLab is implementing Zero Trust, or the practice of shifting access control from the perimeter of
+    the org to the individuals, the assets and the endpoints.
+  - In our case, Zero Trust means that all devices trying to access an endpoint or asset within our GitLab
+    environment will need to authenticate and be authorized.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G066
+  question: Are cloud infrastructure resources scanned for misconfigurations?
+  domain: IVS
+  label: answerable
+  reference_answer: We use IaC security scanners to detect common infrastructure misconfigurations in
+    the code before it is deployed to real infrastructure. Additionally, infrastructure and network vulnerability
+    scanners scan already deployed infrastructure from internal or external attack surface perspectives
+    to report potential vulnerabilities.
+  key_facts:
+  - IaC security scanners detect common infrastructure misconfigurations in the code prior to deployment.
+  - Infrastructure and network vulnerability scanners scan already deployed infrastructure and report
+    potential vulnerabilities.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/
+  supporting_quotes:
+  - IaC security scanners detect common infrastructure misconfigurations in the code prior to it being
+    deployed to real infrastructure.
+  - Infrastructure and network vulnerability scanners scan already deployed infrastructure, from either
+    an internal or external attack surface perspective, and report any potential vulnerabilities detected
+    in systems or hosted application code.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G067
+  question: Are firewalls or security groups used to restrict inbound traffic?
+  domain: IVS
+  label: answerable
+  reference_answer: Yes, we use firewall rules to prevent unauthorized access and restrict inbound traffic,
+    ensuring we expose only the minimum required ports and instances.
+  key_facts:
+  - Firewall rules are configured to prevent unauthorized access.
+  - When permitting access to Compute Instances via firewall rules, we ensure we expose only the minimum
+    ports to only the minimum instances required.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/
+  - https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/
+  supporting_quotes:
+  - firewall rules are configured to prevent unauthorized access.
+  - When permitting access to Compute Instances via firewall rules, you should ensure you are exposing
+    only the minimum ports to only the minimum instances required.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G068
+  question: What is the bandwidth capacity of your DDoS mitigation service in Gbps?
+  domain: IVS
+  label: unanswerable
+  reference_answer: We do not provide information about the bandwidth capacity of our DDoS mitigation
+    service in Gbps in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G069
+  question: Do you follow documented security architecture principles?
+  domain: IVS
+  label: answerable
+  reference_answer: Yes, we define and follow documented Security Architecture Principles. These principles
+    are based on the pillars of least privilege and network isolation, and are detailed alongside principles
+    from Software Systems Architecture and related sources.
+  key_facts:
+  - We define Security Architecture Principles as part of our objectives.
+  - Our principles are based on the pillars of least privilege and network isolation.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/
+  supporting_quotes:
+  - Defining Security Architecture Principles
+  - 'Our principles are based on two simple pillars: 1. Least privilege 2. Network isolation'
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G070
+  question: Do you have a security logging standard that defines what must be logged?
+  domain: LOG
+  label: answerable
+  reference_answer: Yes, we maintain a Security Logging Standard that defines requirements for security
+    logging, including how security-relevant events must be captured, structured, and retained across
+    our product and infrastructure. This standard covers both security logging in our SIEM and requirements
+    for systems not sending logs to the SIEM. Additionally, the standard specifies that security logs
+    must never contain sensitive data such as passwords, tokens, or private keys, and outlines log format
+    and transport requirements.
+  key_facts:
+  - The GitLab Security Logging Standard defines GitLab’s requirements for security logging.
+  - The standard defines how security-relevant events must be captured, structured, and retained across
+    GitLab’s product and infrastructure.
+  - Security logs must never contain passwords, password hashes, tokens, secrets, or private keys.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/
+  supporting_quotes:
+  - The purpose of this security logging standard is to define GitLab’s requirements for security logging.
+  - The GitLab Security Logging Standard defines how security-relevant events must be captured, structured,
+    and retained across GitLab’s product and infrastructure.
+  - Security logs must never contain passwords, password hashes, tokens, secrets, or private keys.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G071
+  question: Are security logs centrally collected in a SIEM?
+  domain: LOG
+  label: answerable
+  reference_answer: Yes, security logs are centrally collected and maintained in a SIEM. The Security
+    Operations team maintains a Single Source of Truth for security logs in their SIEM, and logs from
+    GitLab-managed environments must be forwarded to the security logging platform and SIEM.
+  key_facts:
+  - The Security Operations team maintains a Single Source of Truth for the security logs in their SIEM.
+  - For GitLab-managed environments, logs must be forwarded to the security logging platform and SIEM.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/
+  supporting_quotes:
+  - The Security Operations team maintains a Single Source of Truth (SSOT) for the security logs in their
+    SIEM.
+  - For GitLab-managed environments (GitLab.com, Dedicated), logs must be forwarded to the security logging
+    platform and SIEM.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G072
+  question: How long are security logs retained?
+  domain: LOG
+  label: answerable
+  reference_answer: We retain security logs for production systems for a minimum of one year, and security
+    logs for critical systems that are not production for a minimum of 90 days.
+  key_facts:
+  - Security logs for production systems must be retained for 1 year minimum.
+  - Security logs for critical systems that are not production must be retained for 90 days minimum.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/
+  supporting_quotes:
+  - Security logs for production systems | 1 year minimum
+  - Security logs for critical systems that are not production | 90 days minimum
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G074
+  question: Are logs protected from tampering or unauthorized access?
+  domain: LOG
+  label: answerable
+  reference_answer: Yes, we record all security significant events in a tamper-resistant store. Additionally,
+    we subject additional context logged for operational purposes to restricted retention and access controls,
+    and store security logs in approved secure storage if they are not sent to our SIEM.
+  key_facts:
+  - Record all security significant events in a tamper-resistant store
+  - Additional context logged for operational purposes must be subject to restricted retention and access
+    controls
+  - Security logs must be stored in approved secure storage if not sent to our SIEM
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/
+  supporting_quotes:
+  - Record all security significant events in a tamper-resistant store
+  - Additional context logged for operational purposes must be scoped, redacted, and subject to restricted
+    retention and access controls.
+  - security logs must be stored in approved secure storage for a duration aligned with our retention
+    policy.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G075
+  question: Are alerts generated and reviewed for suspicious activity?
+  domain: LOG
+  label: answerable
+  reference_answer: We generate security events for unusual activity, such as signals passing a threshold,
+    component signatures not matching, or unauthorized access to sensitive resources. We also leverage
+    a SIEM to collect, normalize, and analyze logs.
+  key_facts:
+  - Generate security events for unusual activity
+  - Leverage a SIEM to collect, normalize, and analyze logs
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/
+  supporting_quotes:
+  - Generate security events (could be Slack notifications) for unusual activity
+  - Leverage a SIEM (Devo for gitlab.com) to collect, normalize, and analyze logs.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G076
+  question: Do you have a documented security incident response process?
+  domain: SEF
+  label: answerable
+  reference_answer: Yes, we have a documented Security Incident Response Guide that outlines our procedures,
+    including remediation and recovery, incident tracking, and incident communications.
+  key_facts:
+  - We have a documented Security Incident Response Guide covering procedures like remediation, recovery,
+    and incident tracking.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/
+  supporting_quotes:
+  - During the remediation and recovery phase the incident responder will work to ensure impacted resources
+    are secured
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G077
+  question: How are security incidents classified by severity?
+  domain: SEF
+  label: partial
+  reference_answer: We determine security incident severity by considering factors such as the type of
+    data involved, whether accounts were compromised, vulnerability impact and likelihood, scope, and
+    service availability. To place the correct severity rating, we refer to our Incident Classification
+    page.
+  key_facts:
+  - Severity assignment considers factors like data classification, account takeover, vulnerability impact,
+    incident scope, and service availability.
+  - The Incident Classification page is used to help place the correct severity rating.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/
+  supporting_quotes:
+  - 'When considering severity, look at: * The type of data involved and how it’s classified using the
+    Data Classification Policy'
+  - To help place the correct severity rating on the incident you are about to submit, please refer to
+    the Incident Classification page.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G078
+  question: Do you have a communication plan for notifying stakeholders about security incidents?
+  domain: SEF
+  label: answerable
+  reference_answer: Yes, we maintain a security incident communication plan that defines the who, what,
+    when, and how for notifying internal stakeholders and external customers of security incidents. This
+    communication response plan covers the strategy and approach for security events that have a 'high'
+    or greater impact according to our risk scoring matrix.
+  key_facts:
+  - We have a security incident communication plan defining who, what, when, and how to notify internal
+    stakeholders and external customers.
+  - The plan covers strategy and approach for security events with a 'high' or greater impact.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/
+  - https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/
+  supporting_quotes:
+  - Our security incident communication plan defines the who, what, when, and how of GitLab in notifying
+    internal stakeholders and external customers of security incidents.
+  - This communication response plan maps out the who, what, when, and how of GitLab in notifying and
+    engaging with internal stakeholders and external customers on security incidents. **This plan of action
+    covers the strategy and approach for security events which have a ‘high’ or greater impact as outlined
+    in GitLab’s risk scoring matrix.**
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G079
+  question: Are post-incident reviews or retrospectives performed?
+  domain: SEF
+  label: answerable
+  reference_answer: Yes, we complete an Incident Review for all incidents. Additionally, we conduct incident
+    retrospectives for all severity::1 incidents and others where there is indication for added value.
+  key_facts:
+  - An Incident Review will be completed for all incidents.
+  - Incident retrospectives will be conducted for all severity::1 incidents and others where there is
+    indication for added value.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/
+  supporting_quotes:
+  - An Incident Review will be completed for all incidents.
+  - incident retrospectives will be conducted for all `severity::1` incidents and others where there is
+    indication for added value.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G080
+  question: How quickly do you notify customers of a confirmed data breach?
+  domain: SEF
+  label: unanswerable
+  reference_answer: We do not provide information on how quickly we notify customers of a confirmed data
+    breach in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G081
+  question: Is there a 24/7 on-call capability for responding to security incidents?
+  domain: SEF
+  label: answerable
+  reference_answer: Yes, our Security Incident Response Team (SIRT) is on-call 24/7/365 to assist with
+    any security incidents.
+  key_facts:
+  - The Security Incident Response Team (SIRT) is on-call 24/7/365 to assist with any security incidents.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/
+  supporting_quotes:
+  - The [Security Incident Response Team (SIRT)](https://handbook.gitlab.com/handbook/security/security-operations/sirt/)
+    is on-call [24/7/365](https://handbook.gitlab.com/handbook/engineering/infrastructure-platforms/incident-management/on-call/#security-team-on-call-rotation)
+    to assist with any security incidents.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G082
+  question: Do you assess the security of third-party vendors before using them?
+  domain: STA
+  label: answerable
+  reference_answer: Yes, we make security a top priority in our vendor selection process and thoroughly
+    evaluate each vendor’s security practices. Our Security Risk team evaluates vendor adherence to industry
+    standards, regulatory compliance, security ratings, and documentation such as third-party security
+    attestations and penetration testing summaries using a risk-based approach.
+  key_facts:
+  - Security is a top priority in the vendor selection process.
+  - Security Risk thoroughly evaluates each vendor’s security practices.
+  - TPRM utilizes a risk-based approach when assessing third parties.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/
+  supporting_quotes:
+  - Security is a top priority in GitLab’s vendor selection process, and GitLab is committed to partnering
+    with vendors who prioritize the protection of sensitive data and maintain robust security measures.
+  - As such, Security Risk thoroughly evaluates each vendor’s security practices, including their adherence
+    to industry standards, compliance with relevant regulations, and health of their Bitsight security
+    ratings.
+  - TPRM utilizes a risk-based approach when assessing third parties.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G083
+  question: Is third-party risk assessment based on the sensitivity of data the vendor handles?
+  domain: STA
+  label: answerable
+  reference_answer: Yes, we use a risk-based approach for third-party risk management that is guided by
+    the vendor's inherent and residual risk levels. We determine the baseline inherent risk level by using
+    the sensitivity of the data exchanged with the vendor, which dictates our TPRM assessment requirements.
+  key_facts:
+  - TPRM procedures are guided by the vendor's Inherent and Residual Risk levels determined by services
+    provided and the nature of data shared.
+  - GitLab uses the sensitivity of the data exchanged with the vendor to establish the baseline inherent
+    risk level.
+  - The baseline inherent risk level dictates our TPRM assessment requirements.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/
+  supporting_quotes:
+  - TPRM procedures are guided by the vendor’s Inherent and Residual Risk levels, which are determined
+    based on the services provided and the nature of data shared.
+  - GitLab uses the sensitivity of the data exchanged with the vendor to establish the baseline risk level,
+    which dictates our TPRM assessment requirements
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G085
+  question: Are vendors reassessed periodically?
+  domain: STA
+  label: answerable
+  reference_answer: We require a new assessment before we can approve additional requisitions if a vendor
+    was reviewed last year, as our assessments are valid for 12 months. Continued oversight is necessary
+    because a vendor's security environment and our compliance obligations are subject to change. Additionally,
+    requisitions for vendors within the approval window of their previous assessment must be reviewed
+    by the TPRM Engineer to determine whether a material change has occurred.
+  key_facts:
+  - Our assessments are valid for 12 months, after which a new assessment is required before approving
+    additional requisitions.
+  - Requisitions for vendors within the approval window of their previous assessment must be reviewed
+    by the TPRM Engineer to determine if a material change has occurred.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/
+  supporting_quotes:
+  - Our assessments are valid for 12 months. After that, a new assessment is required before we can approve
+    additional requisitions.
+  - requisitions for vendors within the Approval Window of their previous assessment must be reviewed
+    by the TPRM Engineer to determine whether a material change has occurred
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G086
+  question: Do you investigate software supply chain risks in your dependencies?
+  domain: STA
+  label: answerable
+  reference_answer: Yes, we investigate software supply chain risks and vulnerabilities in our dependencies.
+    We treat potential software supply chain vulnerabilities with high priority, and our Vulnerability
+    Management team audits our software supply chain for compromised or vulnerable dependencies or tooling
+    when engaged via Slack, SIRT, or PSIRT.
+  key_facts:
+  - Supply Chain Risk Management addresses risks from third-party dependencies and the software supply
+    chain.
+  - A potential software supply chain vulnerability should be treated with high priority.
+  - The Vulnerability Management team will be asked to audit GitLab’s software supply chain for evidence
+    of compromised or otherwise vulnerable dependencies or tooling.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/team-member-upskilling/
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/weekly-triage/
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/supply-chain-investigations/
+  supporting_quotes:
+  - Supply Chain Risk Management - addresses risks from third-party dependencies and the software supply
+    chain
+  - A potential software supply chain vulnerability should be treated with high priority.
+  - The Vulnerability Management team will be asked to audit GitLab’s software supply chain for evidence
+    of compromised or otherwise vulnerable dependencies or tooling.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G087
+  question: Provide the full list of subprocessors and their countries of operation.
+  domain: STA
+  label: unanswerable
+  reference_answer: We do not provide a list of subprocessors and their countries of operation in the
+    provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G088
+  question: Do you perform penetration tests, and how often?
+  domain: TVM
+  label: answerable
+  reference_answer: Yes, we perform penetration tests. A third-party penetration test is conducted at
+    least annually by a reputable third-party penetration testing firm.
+  key_facts:
+  - We conduct a third-party penetration test at least annually.
+  - We utilize a reputable third-party penetration testing firm to conduct the penetration test.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/security-and-technology-policies/penetration-testing-policy/
+  supporting_quotes:
+  - A third-party penetration test is conducted at least annually.
+  - GitLab utilizes a reputable third-party penetration testing firm to conduct the penetration test.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G089
+  question: What are your remediation timelines for vulnerabilities by severity?
+  domain: TVM
+  label: partial
+  reference_answer: We require vulnerabilities to be mitigated and remediated according to specific timelines
+    specified in the Vulnerability Management handbook, but our provided policy passages do not detail
+    the exact timeline durations for each severity level.
+  key_facts:
+  - Vulnerabilities must be mitigated and remediated according to specific timelines.
+  - The timelines are specified in the Vulnerability Management handbook.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/engaging-with-security/
+  supporting_quotes:
+  - Vulnerabilities must be mitigated and remediated according to specific timelines. The timelines are
+    specified in the Vulnerability Management handbook
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G090
+  question: Do you run a bug bounty program?
+  domain: TVM
+  label: answerable
+  reference_answer: Yes, we run a bug bounty program that is managed by HackerOne, and we also award Contributor
+    Success store credits to reporters who submit quality reports that do not qualify for a monetary reward
+    in our program.
+  key_facts:
+  - We run a bug bounty program.
+  - GitLab's bug bounty program is managed by HackerOne.
+  - We can award Contributor Success store credits to reporters who submit quality reports that did not
+    qualify for a monetary reward in our Bug Bounty program.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/
+  supporting_quotes:
+  - We can award [Contributor Success store](https://rewards.gitlab.com/) credits to reporters who have
+    submitted a quality report that did not qualify for a monetary reward in our Bug Bounty program.
+  - GitLab’s bug bounty program is managed by HackerOne.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G092
+  question: Are infrastructure vulnerability scans run on a schedule?
+  domain: TVM
+  label: answerable
+  reference_answer: We do not run vulnerability detection workloads on a configured schedule; instead,
+    they occur on a less than daily basis and should be considered as continuous detection in our scoped
+    environments.
+  key_facts:
+  - Vulnerability detection workloads occur on a less than daily basis
+  - There is no configured schedule for vulnerability detection workloads
+  - Vulnerability detection workloads should be considered as continuous detection
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/infrastructure-vulnerability-procedure/
+  supporting_quotes:
+  - Vulnerability detection workloads occur on a less than daily basis in our scoped environments.
+  - There is no configured schedule and this should be considered as continuous detection.
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G093
+  question: How do you define what counts as a vulnerability?
+  domain: TVM
+  label: answerable
+  reference_answer: We define a vulnerability as a flaw in either code or configuration with potential
+    or demonstrated security impact. To be considered a vulnerability rather than just a bug, it must
+    have a security impact that could cause software to behave in a way unexpected by a typical user,
+    negatively impacting availability, integrity, or confidentiality. Additionally, a vulnerability does
+    not need to be demonstrated as exploitable to be classified as one.
+  key_facts:
+  - A vulnerability is a flaw in either code or configuration with potential or demonstrated security
+    impact.
+  - It must have a security impact that negatively impacts availability, integrity, or confidentiality,
+    or causes unexpected software behavior.
+  - A vulnerability does not need to be demonstrated to be exploitable to be considered a vulnerability.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/what-is-a-vulnerability/
+  supporting_quotes:
+  - A vulnerability describes a flaw in either code or configuration with potential or demonstrated security
+    impact.
+  - Security impact is classified by the potential to cause software to behave in a way which would be
+    considered unexpected by a typical user of the software or system, negatively impacting the availability
+    or integrity of the software, or the confidentiality of information held or processed by the system.
+  - A vulnerability does not need to be demonstrated to be exploitable to be considered a vulnerability
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G094
+  question: How many critical vulnerabilities were open in production at the end of last month?
+  domain: TVM
+  label: unanswerable
+  reference_answer: We do not have information in the provided context regarding how many critical vulnerabilities
+    were open in production at the end of last month.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G095
+  question: Are employee laptops required to use full-disk encryption?
+  domain: UEM
+  label: partial
+  reference_answer: We state that laptops are protected and secured through system configurations which
+    include encryption, but the provided passages do not explicitly specify whether full-disk encryption
+    is required.
+  key_facts:
+  - Laptops are secured through system configurations including encryption.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/
+  supporting_quotes:
+  - 'Laptops are protected through Endpoint Management Procedures and secured through system configurations
+    defined in the IT Security - System Configurations handbook page which include, but are not limited
+    to: + Passwords + Screen timeout + Encryption + Endpoint detection and response'
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G096
+  question: Are company devices centrally managed and kept up to date?
+  domain: UEM
+  label: unanswerable
+  reference_answer: We cannot answer whether company devices are centrally managed and kept up to date
+    because the provided policy passages do not address the central management or updating processes for
+    company devices.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G097
+  question: Is endpoint protection or malware detection installed on employee devices?
+  domain: UEM
+  label: answerable
+  reference_answer: We protect laptops through endpoint management procedures and secure them using system
+    configurations that include endpoint detection and response, passwords, screen timeouts, and encryption.
+  key_facts:
+  - Laptops are protected through endpoint management procedures and secured through system configurations.
+  - Configurations include endpoint detection and response.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/
+  supporting_quotes:
+  - Laptops are protected through [Endpoint Management Procedures]... and secured through system configurations...
+    which include... Endpoint detection and response
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G098
+  question: Can company data be wiped from a lost or stolen device?
+  domain: UEM
+  label: unanswerable
+  reference_answer: We do not have information in the provided policy passages regarding whether company
+    data can be wiped from a lost or stolen device.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G099
+  question: Are USB storage devices restricted or required to be encrypted?
+  domain: UEM
+  label: answerable
+  reference_answer: We state that sensitive data should not be stored on removable storage devices, such
+    as USB drives or external hard drives. Furthermore, external storage devices on company assets are
+    not sanctioned.
+  key_facts:
+  - Sensitive data should not be stored on removable storage devices like USB drives.
+  - External storage devices on company assets are not sanctioned.
+  supporting_urls:
+  - https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/
+  supporting_quotes:
+  - Sensitive data should not be stored on removable storage devices, such as USB drives or external hard
+    drives.
+  - External storage devices on company assets [is not sanctioned](https://handbook.gitlab.com/handbook/people-group/acceptable-use-policy/#use-of-external-media-on-company-assets).
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
+- id: G100
+  question: What brand and model of laptop is issued to engineers?
+  domain: UEM
+  label: unanswerable
+  reference_answer: We do not provide information regarding the specific brand and model of laptops issued
+    to engineers in the provided policy passages.
+  key_facts: []
+  supporting_urls: []
+  supporting_quotes: []
+  drafted_by: gemini/gemini-3.5-flash-lite
+  verified: false
+  notes: ''
