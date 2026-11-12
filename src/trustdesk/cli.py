@@ -85,6 +85,39 @@ def report_cmd(runs: list[Path]) -> None:
     console.print(f"[green]Report: {report}[/]")
 
 
+gold_app = typer.Typer(help="Unbiased retrieval benchmark with hand-marked gold pages.")
+app.add_typer(gold_app, name="gold")
+
+
+@gold_app.command("sheet")
+def gold_sheet(n: int = 30, depth: int = 5) -> None:
+    """Pool the top pages from every retrieval setup into a sheet for hand-marking."""
+    from trustdesk.evals.gold import make_sheet
+
+    sheet = make_sheet(config.settings(), n, depth, log=console.print)
+    console.print(f"[green]Mark is_gold (y/n) in {sheet}[/]")
+
+
+@gold_app.command("score")
+def gold_score(sheet: Path | None = None) -> None:
+    """Score every retrieval setup against the hand-marked gold pages."""
+    from trustdesk.evals.gold import score_sheet
+
+    results = score_sheet(sheet)
+    table = Table("config", "questions", "hit@1", "hit@3", "MRR@10")
+    for r in results:
+        if r["config"] != "_coverage" and r["questions"]:
+            table.add_row(
+                r["config"],
+                str(r["questions"]),
+                f"{r['hit_at_1']:.0%}",
+                f"{r['hit_at_3']:.0%}",
+                f"{r['mrr_at_10']:.2f}",
+            )
+    console.print(table)
+    console.print_json(json.dumps(results[-1]))
+
+
 @app.command("grid")
 def grid_cmd(
     configs: str | None = typer.Option(

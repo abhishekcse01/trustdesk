@@ -67,3 +67,7 @@ costs ~1.8 s per question (next to ~24 s of generation), and keeps every referen
 - **Deferred to phase 4:** query rewriting (too slow on the local model for its expected gain) and
   confidence calibration (needs the Verifier's scores).
 - **Next measurement step:** verify references, then re-run the grid and a fair 50-question eval.
+- **Unbiased retrieval benchmark (from reader feedback):** hand-mark answer-bearing pages for 30
+  questions, using pages pooled from all four setups so no retriever defines the gold set, then
+  score "any gold page in the top 3". This separates retrieval quality from agreement with the
+  dense-built references. Planned; see the backlog in `docs/BUILD_LOG.md`.

@@ -1,0 +1,977 @@
+{
+ "G001": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-async/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-async/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/triage-rotation/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-async/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-async/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/"
+  ]
+ },
+ "G004": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/product-security/supply-chain-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/product-security/supply-chain-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/supply-chain-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ]
+ },
+ "G008": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/secure-code-review/automated-mr-reviewer/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/controlled-document-procedure/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/secure-code-review/automated-mr-reviewer/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/verifying-security-fixes/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/product-security/mentorship/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/jihu-contribution-merge-monitor-reports/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/secure-code-review/automated-mr-reviewer/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/"
+  ]
+ },
+ "G010": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/scw-engagement-plan/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/scw-engagement-plan/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/scw-engagement-plan/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/"
+  ]
+ },
+ "G013": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/information-system-contingency-plan-iscp/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/information-system-contingency-plan-iscp/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/information-system-contingency-plan-iscp/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/",
+   "https://handbook.gitlab.com/handbook/security/gitlab_security_resource_center/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/gitlab_security_resource_center/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/incident-response-guidance/",
+   "https://handbook.gitlab.com/handbook/security/information-system-contingency-plan-iscp/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/"
+  ]
+ },
+ "G018": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/security-engineer/",
+   "https://handbook.gitlab.com/handbook/security/product-security/supply-chain-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/faq/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/security-engineer/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/software-development-lifecycle-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/supply-chain-risk-management/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/software-development-lifecycle-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/security-engineer/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/software-development-lifecycle-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/"
+  ]
+ },
+ "G020": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/engaging-with-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/vulnerability-management-team/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/automation/",
+   "https://handbook.gitlab.com/handbook/security/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-organization/",
+   "https://handbook.gitlab.com/handbook/security/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-organization/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/"
+  ]
+ },
+ "G023": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/vulnerability-management-team/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla-exceptions/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/what-does-fixed-mean/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/software-development-lifecycle-standard/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/what-does-fixed-mean/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/vulnerability-management-team/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/development-and-code-review/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/what-does-fixed-mean/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/"
+  ]
+ },
+ "G025": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/password-standard/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/pgp_process/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/pgp_process/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/"
+  ]
+ },
+ "G030": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/rotate-service-account-personal-access-tokens/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/rotate-service-account-personal-access-tokens/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/rotate-service-account-personal-access-tokens/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/rotate-service-account-personal-access-tokens/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/"
+  ]
+ },
+ "G031": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/",
+   "https://handbook.gitlab.com/handbook/security/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-control-testing/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/risk-register/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ]
+ },
+ "G032": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/supply-chain-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/infrastructure-vulnerability-procedure/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/what-does-fixed-mean/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/infrastructure-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/what-does-fixed-mean/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/infrastructure-vulnerability-procedure/"
+  ]
+ },
+ "G036": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/"
+  ]
+ },
+ "G039": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/critical-logging-methodology/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/external-security-communications-procedure/"
+  ]
+ },
+ "G045": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policy-exception/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/software-development-lifecycle-policy/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/change-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/isms/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policy-exception/",
+   "https://handbook.gitlab.com/handbook/security/controlled-document-procedure/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/weekly-triage/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policy-exception/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/controlled-document-procedure/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/software-development-lifecycle-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/weekly-triage/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/critical-systems/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policy-exception/",
+   "https://handbook.gitlab.com/handbook/security/controlled-document-procedure/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/weekly-triage/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/change-management-policy/"
+  ]
+ },
+ "G046": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/information-system-contingency-plan-iscp/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/risk-based-compliance/"
+  ]
+ },
+ "G049": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/security-training/"
+  ]
+ },
+ "G051": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/milestone-planning/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/scw-engagement-plan/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-training/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/scw-engagement-plan/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ]
+ },
+ "G058": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/rotate-service-account-personal-access-tokens/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/governance/sec-awareness-training/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/"
+  ]
+ },
+ "G059": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/"
+  ]
+ },
+ "G065": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/runbooks/fixing-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/threat-modeling/howto/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/access-reviews/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/zero-trust/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/",
+   "https://handbook.gitlab.com/handbook/security/network-isolation/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/"
+  ]
+ },
+ "G067": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/access-management-policy/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/reproducible-vulnerabilities/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/gitlab_projects_baseline_requirements/",
+   "https://handbook.gitlab.com/handbook/security/best-practices/google-cloud-security-best-practices/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-reviews/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/"
+  ]
+ },
+ "G072": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/engaging-with-security/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/security-logging/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/records-retention-deletion/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/engaging-with-security/"
+  ]
+ },
+ "G074": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/engaging-with-security/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/security-logging-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/data-classification-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/security-and-technology-policies/audit-logging-policy/"
+  ]
+ },
+ "G078": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/",
+   "https://handbook.gitlab.com/handbook/security/external-security-communications-procedure/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/external-security-communications-procedure/",
+   "https://handbook.gitlab.com/handbook/security/isms/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/isms/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/external-security-communications-procedure/",
+   "https://handbook.gitlab.com/handbook/security/isms/"
+  ]
+ },
+ "G081": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/runbooks/holiday-coverage/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-async/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/holiday-coverage/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/working-with-sirt/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/holiday-coverage/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/incident-response-guidance/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/incident-response-guidance/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/sec-incident-response/",
+   "https://handbook.gitlab.com/handbook/security/security-operations/sirt/security-incident-communication-plan/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/incident-response-guidance/"
+  ]
+ },
+ "G082": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/upstream-security-patches/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/upstream-security-patches/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/technical-and-organizational-measures/"
+  ]
+ },
+ "G085": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla-exceptions/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla-exceptions/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/",
+   "https://handbook.gitlab.com/handbook/security/security-observations-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/critical-systems/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla-exceptions/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/third-party-risk-management/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-risk/storm-program/critical-systems/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/sla-exceptions/"
+  ]
+ },
+ "G090": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/product-security-engineering/runbooks/sbom-backfiller/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/psirt-case-lifecycle/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/",
+   "https://handbook.gitlab.com/handbook/security/engaging-with-security/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/handling-s1p1/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-organization/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/hackerone-process/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/application-security/appsec-organization/",
+   "https://handbook.gitlab.com/handbook/security/product-security/psirt/runbooks/",
+   "https://handbook.gitlab.com/handbook/security/"
+  ]
+ },
+ "G099": {
+  "dense": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/",
+   "https://handbook.gitlab.com/handbook/security/network-isolation/"
+  ],
+  "dense + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/"
+  ],
+  "hybrid (RRF)": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/network-isolation/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/",
+   "https://handbook.gitlab.com/handbook/security/security-assurance/security-compliance/sec-controls/",
+   "https://handbook.gitlab.com/handbook/security/password-guidelines/"
+  ],
+  "hybrid + rerank": [
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/token-management-standard/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/physical-security-standard-for-company-assets/",
+   "https://handbook.gitlab.com/handbook/security/product-security/security-platforms-architecture/security-architecture/",
+   "https://handbook.gitlab.com/handbook/security/product-security/vulnerability-management/encryption-policy/",
+   "https://handbook.gitlab.com/handbook/security/secure-coding-training/",
+   "https://handbook.gitlab.com/handbook/security/pgp_process/",
+   "https://handbook.gitlab.com/handbook/security/policies_and_standards/cryptographic-standard/"
+  ]
+ }
+}

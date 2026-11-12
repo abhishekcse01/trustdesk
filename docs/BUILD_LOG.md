@@ -3,6 +3,25 @@
 A running record of what was built, measured and decided. Newest first.
 Visual version: [TrustDesk System Map](https://claude.ai/artifact/J9jzu6bcA2yayhfQ67JAge) (private).
 
+## Backlog from community feedback
+
+- **Unbiased retrieval benchmark** (LinkedIn comment on post 2, 11 Nov 2026). The grid tie (~98%
+  hit@3 for every setup) only measures agreement with the dense retriever, because references
+  were drafted from dense results. Fix:
+  1. Pick 30 answerable/partial questions.
+  2. Pool the top 10 pages from all four retrieval setups per question (TREC-style pooling), so
+     no single retriever decides what counts as gold.
+  3. Hand-mark every pooled page as answer-bearing or not.
+  4. Score each setup on "any gold page in the top 3" (and MRR against gold pages).
+  5. Keep unanswerable questions separate: for those, "no gold page exists" is correct.
+  Cost: no API tokens; about 45–60 min of hand labelling. Report the before/after in the next
+  LinkedIn update (promised in the reply).
+  - [x] Sheet generated (11 Nov): `evals/gold_pages/label-gold-pages.csv`, 30 questions across
+        domains, 225 pooled pages (top-5 pages per setup), blind: no "found by" column, shuffled.
+        Built by `uv run python -m trustdesk gold sheet`.
+  - [ ] Mark `is_gold` y/n for every row
+  - [ ] Score: `uv run python -m trustdesk gold score`
+
 ## 2026-11-11 · Phase 3 complete: hybrid search + reranking ([report](../reports/phase3.md))
 
 - BM25 keyword index (`retrieval/bm25.py`), hybrid retrieval with reciprocal rank fusion and a
