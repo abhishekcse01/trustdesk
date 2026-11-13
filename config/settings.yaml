@@ -43,6 +43,17 @@ eval:
   min_interval_s: 0      # 0 = automatic (4.5 s between Gemini calls = under 15/min)
   max_retries: 4         # on rate-limit / unavailable errors, backing off 5-40 s
 
+graph:
+  # Verifier abstains when the best question-passage evidence score is below this.
+  # Chosen from `trustdesk calibrate` (13 Nov): 0.3 abstains on 68% of unanswerable questions
+  # and 7.6% of answerable ones; 0.5 gave the same 68% but 10.6%. Re-run after verification.
+  abstain_threshold: 0.3
+  support_threshold: 0.3
+  max_retries: 1
+  retry_extra_k: 2
+  checkpoint_db: data/checkpoints.sqlite
+  audit_db: data/trustdesk.sqlite
+
 tracing:
   service_name: trustdesk
   jsonl_dir: reports/traces   # git-ignored; set OTEL_EXPORTER_OTLP_ENDPOINT to also export

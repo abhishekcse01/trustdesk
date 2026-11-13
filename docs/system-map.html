@@ -282,7 +282,7 @@ details.q p { margin-top: 6px; color: var(--muted); padding-left: 20px; }
       concepts: ["Hybrid search", "Reciprocal rank fusion"], ask: "When does keyword search beat vector search?" }),
     C("sqlite", 2, 242, "SQLite", "audit, checkpoints", 4, {
       what: "App data, the append-only audit log and LangGraph checkpoints so a run survives restarts.",
-      tech: ["SQLAlchemy", "SqliteSaver checkpointer"], files: ["planned: src/trustdesk/store/"],
+      tech: ["SqliteSaver checkpointer (pending reviews survive restarts)", "Append-only audit log, SHA-256 per row"], files: ["src/trustdesk/store/audit.py", "src/trustdesk/graph/runtime.py"],
       concepts: ["Durable agent state", "Audit trails"], ask: "Why must the human-approval step survive a restart?" }),
     C("retriever", 3, 52, "Retriever", "hybrid + rerank", 1, {
       what: "Runs dense and keyword search, fuses them, reranks, and logs chunk ids and scores as a RETRIEVER span.",
@@ -303,13 +303,13 @@ details.q p { margin-top: 6px; color: var(--muted); padding-left: 20px; }
       concepts: ["Structured output", "Grounding rules", "Abstention"],
       ask: "Why is 'needs human input' a feature, not a failure?" }),
     C("verifier", 4, 132, "Verifier", "citation checks", 1, {
-      what: "Checks every quote appears word for word in a chunk that was actually retrieved. Becomes a full agent in phase 4.",
-      tech: ["Normalised substring match today", "NLI cross-encoder in phase 4"], files: ["src/trustdesk/agents/answer.py (check_citations)"],
+      what: "Scores evidence (question vs passages), citations (quotes found word for word) and support (answer vs cited passages); abstains or retries when they are weak.",
+      tech: ["Cross-encoder as entailment proxy, local", "Abstain threshold 0.3 from calibration", "One retry with 2 more chunks", "Known limit: related-but-wrong passages pass"], files: ["src/trustdesk/graph/verify.py", "src/trustdesk/graph/calibrate.py"],
       concepts: ["Hallucination detection", "Citation accuracy vs faithfulness"],
       ask: "Phase 1 verified 17/22 quotes. What does a failed quote tell you?" }),
     C("review", 4, 242, "Human review", "LangGraph interrupt", 4, {
       what: "Pauses the graph until a security analyst approves, edits or rejects each answer.",
-      tech: ["interrupt() + Command(resume=…)", "Checkpointed state"], files: ["planned: src/trustdesk/graph/"],
+      tech: ["interrupt() + Command(resume=…)", "approve / edit / reject", "trustdesk run asks in the terminal"], files: ["src/trustdesk/graph/build.py", "src/trustdesk/cli.py (run)"],
       concepts: ["Human-in-the-loop", "Governance (G1)"], ask: "Why enforce approval in the graph rather than in the UI?" }),
     C("cli", 5, 52, "CLI", "ask, batch, eval", 1, {
       what: "Command line for every step: fetch, index, search, ask, batch, golden, eval, agreement.",

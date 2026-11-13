@@ -22,6 +22,33 @@ Visual version: [TrustDesk System Map](https://claude.ai/artifact/J9jzu6bcA2yayh
   - [ ] Mark `is_gold` y/n for every row
   - [ ] Score: `uv run python -m trustdesk gold score`
 
+## 2026-11-13 · Phase 4 (in progress): LangGraph workflow, Verifier, human review
+
+- **Per-question LangGraph state machine** (`src/trustdesk/graph/build.py`): guard → retrieve →
+  draft → verify → {review | retry with +2 chunks | abstain} → human_review → save. Fixed edges,
+  every dependency injectable for tests ([ADR 0004](adr/0004-langgraph-verifier-and-human-review.md)).
+- **Local Verifier** (`graph/verify.py`), no API tokens: evidence (question vs best passage,
+  cross-encoder), citation ratio, support (answer vs cited passages). Low evidence forces
+  "Needs human input"; weak support triggers one retry.
+- **Threshold from data** (`trustdesk calibrate`, 97 references): evidence median 0.985 for
+  answerable vs 0.036 for unanswerable. Chose **0.3**: abstains on 68% of unanswerable and 7.6%
+  of answerable questions (0.5 gave 68% / 10.6%; 0.95 gave 94% / 29%). Scores saved to
+  `reports/evals/calibration.json`.
+- **Human review:** `interrupt()` pauses with draft, citations, scores and guard flags; resumes
+  on approve / edit / reject; state checkpointed in SQLite so a pending review survives restarts.
+- **Append-only audit log** (`store/audit.py`) with a SHA-256 per row; `trustdesk audit`.
+- **CLI:** `trustdesk run "question"` (review in the terminal), `audit`, `calibrate`.
+- End-to-end on 3 questions: encryption answered (confidence 1.0); laptop brand abstained
+  (evidence 0.002); audit findings passed with evidence 0.88 although it answers with
+  vulnerability tracking: the relevance model is only a proxy for entailment (known limit).
+- Smart App Control blocked `uuid_utils` (needed by LangGraph): pure-Python uuid7 shim, applied
+  from `trustdesk/__init__.py`; pytest runs with `-p no:langsmith_plugin` (ADR 0002 update).
+- 34 tests pass (8 new for the graph); ruff and strict mypy clean.
+
+**Still to do in phase 4:** questionnaire-level parent graph (fan-out with `Send`), XLSX import
+and export, FastAPI service and Streamlit review screen, before/after eval of the Verifier, and a
+stronger entailment check for related-but-wrong passages.
+
 ## 2026-11-11 · Phase 3 complete: hybrid search + reranking ([report](../reports/phase3.md))
 
 - BM25 keyword index (`retrieval/bm25.py`), hybrid retrieval with reciprocal rank fusion and a

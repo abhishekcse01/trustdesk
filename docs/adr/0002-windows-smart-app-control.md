@@ -27,3 +27,13 @@ Turning Smart App Control off cannot be undone without reinstalling Windows, so 
 
 - Slightly slower mypy. CI on Ubuntu is unaffected and runs the normal commands.
 - If a future dependency ships a blocked DLL, check it with the import probe before adopting it.
+
+## Update 2026-11-13: uuid-utils (phase 4)
+
+LangGraph pulls in langchain-core and langsmith, which import `uuid_utils` for `uuid7()`. Its
+Rust DLL is blocked (tried 0.10.0, 0.11.0, 0.14.0 and 0.19.0). Both libraries call only
+`uuid_utils.compat.uuid7(timestamp=None, nanos=None)`, so `trustdesk._compat` registers a
+pure-Python RFC 9562 uuid7 when the real module fails to load. All shims now run from
+`trustdesk/__init__.py`, before anything imports chromadb or langgraph; `tests/conftest.py`
+imports trustdesk first, and pytest runs with `-p no:langsmith_plugin` because that plugin
+loads before conftest. Pandas is also blocked (ADR 0003).

@@ -85,6 +85,72 @@ def report_cmd(runs: list[Path]) -> None:
     console.print(f"[green]Report: {report}[/]")
 
 
+@app.command("run")
+def run_cmd(
+    question: str,
+    decision: str | None = typer.Option(None, help="approve | edit | reject (skips the prompt)"),
+    text: str = typer.Option("", help="Replacement answer when decision is edit"),
+    reviewer: str = typer.Option("reviewer", help="Name recorded in the audit log"),
+) -> None:
+    """Answer one question through the phase 4 graph, pausing for your review."""
+    import uuid
+
+    from langgraph.types import Command
+
+    from trustdesk.graph.runtime import open_graph
+
+    cfg = config.settings()
+    graph, conn = open_graph(cfg)
+    thread = {"configurable": {"thread_id": f"q-{uuid.uuid4().hex[:8]}"}}
+    try:
+        state = graph.invoke({"question_id": "cli", "question": question}, thread)
+        payload = state["__interrupt__"][0].value
+        d, v = payload["draft"] or {}, payload["verification"]
+        console.print(
+            f"[bold]Draft[/] ({'abstained' if d.get('abstain') else d.get('answer_choice')})"
+        )
+        console.print(d.get("abstain_reason") if d.get("abstain") else d.get("answer_text"))
+        for c in d.get("citations", []):
+            console.print(f'  [dim]"{c["quote"]}"[/]')
+        console.print(
+            f"[dim]verifier: route={v.get('route')} evidence={v.get('evidence')} "
+            f"citations={v.get('citation_ratio')} support={v.get('support')} "
+            f"confidence={v.get('confidence')} | {v.get('reason')}[/]"
+        )
+        if payload["guard_flags"]:
+            console.print(f"[yellow]Guard flags: {payload['guard_flags']}[/]")
+        choice = decision or typer.prompt("Decision [approve/edit/reject]", default="approve")
+        if choice == "edit" and not text:
+            text = typer.prompt("Your answer")
+        final = graph.invoke(
+            Command(resume={"decision": choice, "text": text, "reviewer": reviewer}), thread
+        )
+        console.print(f"[green]{final['status']}[/] and recorded in the audit log.")
+    finally:
+        conn.close()
+
+
+@app.command("audit")
+def audit_cmd(limit: int = 10) -> None:
+    """Show the most recent reviewed answers from the audit log."""
+    from trustdesk.store import audit
+
+    table = Table("when", "question", "decision", "reviewer", "answer")
+    for r in audit.recent(config.path(config.settings().graph.audit_db), limit):
+        table.add_row(
+            r["decided_at"], r["question"][:40], r["decision"], r["reviewer"], r["answer_text"][:50]
+        )
+    console.print(table)
+
+
+@app.command("calibrate")
+def calibrate_cmd() -> None:
+    """Pick the Verifier's abstain threshold from the golden set (local only, no API calls)."""
+    from trustdesk.graph.calibrate import calibrate
+
+    console.print_json(json.dumps(calibrate(config.settings(), log=console.print)))
+
+
 gold_app = typer.Typer(help="Unbiased retrieval benchmark with hand-marked gold pages.")
 app.add_typer(gold_app, name="gold")
 

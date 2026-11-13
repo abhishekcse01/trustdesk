@@ -53,6 +53,15 @@ class EvalCfg(BaseModel):
     max_retries: int = 4
 
 
+class GraphCfg(BaseModel):
+    abstain_threshold: float = 0.5  # evidence below this -> abstain (calibrate with `calibrate`)
+    support_threshold: float = 0.3
+    max_retries: int = 1
+    retry_extra_k: int = 2  # widen context by this many chunks on retry
+    checkpoint_db: str = "data/checkpoints.sqlite"
+    audit_db: str = "data/trustdesk.sqlite"
+
+
 class TracingCfg(BaseModel):
     service_name: str = "trustdesk"
     jsonl_dir: str = "reports/traces"
@@ -68,6 +77,7 @@ class Settings(BaseModel):
     retrieval: RetrievalCfg = RetrievalCfg()
     llm: LlmCfg = LlmCfg()
     eval: EvalCfg = EvalCfg()
+    graph: GraphCfg = GraphCfg()
     tracing: TracingCfg = TracingCfg()
 
 
